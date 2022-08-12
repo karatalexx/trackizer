@@ -1,0 +1,13 @@
+@font-face {
+  font-family: Inter;
+  src: local('Inter'), url(./fonts/Inter-Regular.woff2) format('woff2');
+}
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
