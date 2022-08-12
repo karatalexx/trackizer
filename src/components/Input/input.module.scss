@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.2px;
+    color: #666680;
+  }
+}
+
+.input {
+  background: transparent;
+  border: 1px solid #353542;
+  /* Note: backdrop-filter has minimal browser support */
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  height: 48px;
+  margin-top: 4px;
+  color: #666680;
+}
