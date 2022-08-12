@@ -18,7 +18,7 @@ const Button = ({
   onClick
 }: ButtonProps) => (
   <button onClick={onClick} className={cx( 'wrapper',`${variant}`)}>
-    {Icon && <Icon/>}
+    {Icon && <Icon data-testid='icon' />}
     <span className={cx( 'wrapper__text', {colorBlack: variant === 'white'})}>{textContent}</span>
   </button>
 );

@@ -19,7 +19,7 @@ const Input = ({
   ...rest
 }: InputProps) => (
     <label className={cx('wrapper')}>
-      <span className={cx('wrapper__label')}>{label}</span>
+      <span className={cx('wrapper__label')} data-testid='label'>{label}</span>
       <input type="text" value={value} onChange={onChange} {...rest} className={cx('input',`${className}`)} />
     </label>
 );
