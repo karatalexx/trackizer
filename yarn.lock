@@ -1920,25 +1920,7 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
-"@storybook/addon-controls@6.5.10":
-  version "6.5.10"
-  resolved "https://registry.npmjs.org/@storybook/addon-controls/-/addon-controls-6.5.10.tgz"
-  integrity sha512-lC2y3XcolmQAJwFurIyGrynAHPWmfNtTCdu3rQBTVGwyxCoNwdOOeC2jV0BRqX2+CW6OHzJr9frNWXPSaZ8c4w==
-  dependencies:
-    "@storybook/addons" "6.5.10"
-    "@storybook/api" "6.5.10"
-    "@storybook/client-logger" "6.5.10"
-    "@storybook/components" "6.5.10"
-    "@storybook/core-common" "6.5.10"
-    "@storybook/csf" "0.0.2--canary.4566f4d.1"
-    "@storybook/node-logger" "6.5.10"
-    "@storybook/store" "6.5.10"
-    "@storybook/theming" "6.5.10"
-    core-js "^3.8.2"
-    lodash "^4.17.21"
-    ts-dedent "^2.0.0"
-
-"@storybook/addon-controls@^6.5.10":
+"@storybook/addon-controls@6.5.10", "@storybook/addon-controls@^6.5.10":
   version "6.5.10"
   resolved "https://registry.yarnpkg.com/@storybook/addon-controls/-/addon-controls-6.5.10.tgz#275ddcd0f4dc1a107777b425417a8f252f52a91e"
   integrity sha512-lC2y3XcolmQAJwFurIyGrynAHPWmfNtTCdu3rQBTVGwyxCoNwdOOeC2jV0BRqX2+CW6OHzJr9frNWXPSaZ8c4w==
@@ -3443,6 +3425,11 @@
   integrity sha512-aB4y9UDUXTSMxmM4MH+YnuR0g5Cph3FLQBoWoMB21DSvFVAxRVEHEMx3TLh+zUZYMCQtKiqazz0Q4Rre31f/OA==
   dependencies:
     "@types/yargs-parser" "*"
+
+"@types/zxcvbn@^4.4.1":
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/@types/zxcvbn/-/zxcvbn-4.4.1.tgz#46e42cbdcee681b22181478feaf4af2bc4c1abd2"
+  integrity sha512-3NoqvZC2W5gAC5DZbTpCeJ251vGQmgcWIHQJGq2J240HY6ErQ9aWKkwfoKJlHLx+A83WPNTZ9+3cd2ILxbvr1w==
 
 "@typescript-eslint/eslint-plugin@^5.33.0", "@typescript-eslint/eslint-plugin@^5.5.0":
   version "5.33.0"
@@ -14596,3 +14583,8 @@ zwitch@^1.0.0:
   version "1.0.5"
   resolved "https://registry.npmjs.org/zwitch/-/zwitch-1.0.5.tgz"
   integrity sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==
+
+zxcvbn@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/zxcvbn/-/zxcvbn-4.4.2.tgz#28ec17cf09743edcab056ddd8b1b06262cc73c30"
+  integrity sha512-Bq0B+ixT/DMyG8kgX2xWcI5jUvCwqrMxSFam7m0lAf78nf04hv6lNCsyLYdyYTrCVMqNDY/206K7eExYCeSyUQ==
