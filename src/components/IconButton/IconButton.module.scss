@@ -1,0 +1,13 @@
+.wrapper {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:active {
+    transform: scale(0.9);
+    transition: all 125ms;
+    border-radius: 50%;
+  }
+}
