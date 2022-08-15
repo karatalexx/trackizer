@@ -12,7 +12,7 @@ export interface IconButtonProps {
 const IconButton = ({ Icon, onClick, ...rest }: IconButtonProps) => {
   return (
     <button className={cx('wrapper')} onClick={onClick} {...rest}>
-      <Icon />
+      <Icon data-testid='svgIcon' />
     </button>
   );
 };
