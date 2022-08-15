@@ -11,7 +11,7 @@ export interface LogoProps {
 
 const Logo = ({ size }: LogoProps) => {
     return (
-        <div className={cx(`${size}`)}>
+        <div className={cx(`${size}`)} data-testid={size}>
           <LogoIcon />
         </div>
     );
