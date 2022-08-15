@@ -14,7 +14,11 @@ const PasswordStrengthMeter = ({password}: PasswordStrengthMeterProps) => {
 
   return (
     <div className={cx('strength-meter')}>
-      <div className={cx('strength-meter-fill')} data-strength={passwordScore}></div>
+      <div
+        className={cx('strength-meter-fill')}
+        data-strength={passwordScore}
+        data-testid='strengthMeter'>
+      </div>
     </div>
   );
 };

@@ -21,7 +21,7 @@ const Checkbox = ({ checked, onChange, label, ...rest }: CheckboxProps) => {
                 {...rest}
             />
             <span className={cx('checkbox')} aria-hidden="true" />
-            <span className={cx('wrapper__label')}>{label}</span>
+            <span className={cx('wrapper__label')} data-testid='label'>{label}</span>
         </label>
     );
 };
