@@ -7,12 +7,18 @@
   padding: 14px 24px;
   border-radius: 999px;
   border-color: transparent;
+  font-size: 14px;
+  text-align: center;
+
+  &:active {
+    transform: scale(0.95);
+    transition: all 200ms;
+  }
 
   &__text  {
     color: #FFF;
     margin-left: 8px;
     font-weight: 600;
-    font-size: 14px;
     line-height: 20px;
   }
   .colorBlack {
@@ -42,4 +48,13 @@
 
 .darkGray {
   background: rgba(255, 255, 255, 0.1);
+}
+
+.smallGray {
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  padding: 8px 12px;
+  border: 1px solid;
+  border-radius: 16px;
+  border-image-source: linear-gradient(126.58deg, rgba(255, 255, 255, 0.15) 23.2%, rgba(255, 255, 255, 0) 71.3%);
 }
