@@ -51,11 +51,16 @@ const CircularProgressBar = ({
                   d="M19,90 A48,48 0 1,1 80,90"
                   strokeDasharray={241}
                   strokeDashoffset={strokeDashoffsetValue}
+                  data-testid="path"
                 />
             </svg>
             <div className={cx('inner')}>
               <Logo />
-              <span className={cx('inner__sum')}>${numberWithCommas(currentValue)}</span>
+              <span
+                className={cx('inner__sum')}
+                data-testid={currentValue}>
+                  ${numberWithCommas(currentValue)}
+              </span>
               <Button
                 className={cx('inner__btn')}
                 onClick={onClick}
