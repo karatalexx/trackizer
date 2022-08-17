@@ -16,7 +16,11 @@ const SubsRatingItem = ({
   color,
 }: SubsRatingItemProps) => (
   <div className={cx('container')}>
-    <span className={cx('container__divider')} style={{ background: color }}> </span>
+    <span
+      className={cx('container__divider')}
+      style={{ background: color }}
+      data-testid={color}
+    />
     <span className={cx('container__title')}>{title}</span>
     <span className={cx('container__value')}>{value}</span>
   </div>

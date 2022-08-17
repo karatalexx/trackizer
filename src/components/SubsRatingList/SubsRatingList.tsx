@@ -14,7 +14,7 @@ export interface SubsRatingListProps {
 }
 
 const SubsRatingList = ({ list }: SubsRatingListProps) => (
-  <div className={cx('wrapper')}>
+  <div className={cx('wrapper')} data-testid='wrapper'>
     {list.map(({ color, title, value }) => (
       <div className={cx('button')}  key={title+value}>
         <SubsButton
