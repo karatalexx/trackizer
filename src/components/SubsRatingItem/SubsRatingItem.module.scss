@@ -1,0 +1,41 @@
+.container {
+  position: relative;
+  cursor: pointer;
+  width: 104px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background:
+    linear-gradient(rgba(78, 78, 97, 0.2),rgba(78, 78, 97, 0.2) 100%) padding-box, /*this is your grey background*/
+    linear-gradient(114.85deg, rgba(207, 207, 252, 0.15) 0%, rgba(207, 207, 252, 0) 65.83%) border-box;
+  color: #313149;
+  border: 1px solid transparent;
+  border-radius:15px;
+
+  &__divider {
+    height: 1px;
+    width: 46px;
+    display: block;
+    position: absolute;
+    top: -1px;
+  }
+
+  &__title {
+    margin-top: 16px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    color: #83839C;
+  }
+
+  &__value {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: #FFFFFF;
+  }
+}

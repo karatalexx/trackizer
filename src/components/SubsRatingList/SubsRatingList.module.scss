@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+
+  .button {
+    margin-left: 8px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:active {
+      transform: scale(0.9);
+      transition: all 200ms;
+    }
+  }
+}
