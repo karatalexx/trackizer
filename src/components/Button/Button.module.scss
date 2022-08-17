@@ -9,6 +9,7 @@
   border-color: transparent;
   font-size: 14px;
   text-align: center;
+  cursor: pointer;
 
   &:active {
     transform: scale(0.95);
@@ -57,4 +58,16 @@
   border: 1px solid;
   border-radius: 16px;
   border-image-source: linear-gradient(126.58deg, rgba(255, 255, 255, 0.15) 23.2%, rgba(255, 255, 255, 0) 71.3%);
+
+  &.inactive {
+    background: transparent;
+    color: #A2A2B5;
+  }
+
+  &.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: #A2A2B5;
+  }
+
 }
+
