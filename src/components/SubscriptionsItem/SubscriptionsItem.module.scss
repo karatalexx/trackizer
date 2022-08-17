@@ -1,0 +1,77 @@
+.wrapper {
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px 13px 12px;
+  border: 1px solid #353542;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #FFFFFF;
+
+  &__left {
+    display: flex;
+    align-items: center;
+  }
+
+  svg {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+.square {
+  height: 160px;
+  width: 160px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  border: 1px solid rgba(207, 207, 252, 0.15);
+  background: rgba(78, 78, 97, 0.2);
+
+  & .wrapper__left {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  & .name {
+    margin: 44px 0 5px 0;
+  }
+
+  & .price {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 32px;
+  }
+}
+
+.name {
+  margin-left: 15px;
+}
+
+.date {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background: #353542;
+  border-radius: 12px;
+  color: #A2A2B5;
+
+  &__month {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 0.2px;
+  }
+
+  &__day {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
