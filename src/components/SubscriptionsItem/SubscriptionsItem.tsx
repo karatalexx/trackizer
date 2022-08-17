@@ -21,7 +21,7 @@ const SubscriptionsItem = ({
   isUpcomingBill,
   isSquare
 }: SubscriptionsItemProps) => {
-  const options: Intl.DateTimeFormatOptions = { month: 'short', day: '2-digit' }
+  const options: Intl.DateTimeFormatOptions = { month: 'short', day: '2-digit' };
   const [month, day] = new Date(date).toLocaleDateString('en-US', options).split(' ');
 
   return (
@@ -29,10 +29,10 @@ const SubscriptionsItem = ({
       <div className={cx('wrapper__left')}>
         {isUpcomingBill ? (
             <div className={cx('date')}>
-              <span className={cx('date__month')}>{month}</span>
-              <span className={cx('date__day')}>{day}</span>
+              <span className={cx('date__month')} data-testid={month}>{month}</span>
+              <span className={cx('date__day')} data-testid={day}>{day}</span>
             </div>
-        ) : <Icon/>}
+        ) : <Icon data-testid={name} />}
         <span className={cx('name')}>{name}</span>
       </div>
       <span className={cx('price')}>{price}</span>
