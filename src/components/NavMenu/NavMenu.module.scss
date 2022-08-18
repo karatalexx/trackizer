@@ -1,0 +1,60 @@
+.wrapper {
+  max-width: 600px;
+  position: relative;
+  z-index: 2;
+  border-radius: 16px;
+  margin-top: 40px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .icon__btns {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    &_inner {
+      display: flex;
+      margin: 24px;
+      justify-content: space-between;
+      width: 30%;
+    }
+  }
+
+  .add__btn {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    font-size: 16px;
+    color: #FFF;
+    background:
+      linear-gradient(#FF7966,#FF7966) padding-box,
+      radial-gradient(100% 100% at 50% 100%, rgba(255, 255, 255, 0) 43.25%, rgba(255, 127, 55, 0.5) 100%) border-box;
+    border: 1px solid transparent;
+    box-shadow: 0 8px 25px rgba(255, 121, 102, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .blur {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: -1;
+    bottom: 0;
+    box-shadow: 0 -60px 35px 55px #1c1c23;
+    width: 90%;
+    height: 1px;
+  }
+}

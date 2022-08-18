@@ -8,7 +8,7 @@ const mockedOnClick = jest.fn();
 
 describe('IconButton component', () => {
     it('component displayed on the page', () => {
-        render(<IconButton onClick={mockedOnClick} Icon={Settings} />);
+        render(<IconButton onClick={mockedOnClick} Icon={Settings} testId='svgIcon' />);
         expect(screen.getByTestId('svgIcon')).toBeInTheDocument();
     });
 

@@ -1,4 +1,4 @@
-import React, {FC, SVGProps} from 'react';
+import React, { FC, SVGProps } from 'react';
 import classNames from 'classnames/bind';
 import styles from './IconButton.module.scss';
 
@@ -7,14 +7,20 @@ const cx = classNames.bind(styles);
 export interface IconButtonProps {
   Icon: FC<SVGProps<SVGSVGElement>>;
   onClick: () => void;
+  isActive?: boolean;
+  testId?: string;
 }
 
-const IconButton = ({ Icon, onClick, ...rest }: IconButtonProps) => {
+const IconButton = ({ Icon, onClick, isActive, testId, ...rest }: IconButtonProps) => {
   return (
-    <button className={cx('wrapper')} onClick={onClick} {...rest}>
-      <Icon data-testid='svgIcon' />
+    <button className={cx('wrapper', {active: isActive})} onClick={onClick} {...rest}>
+      <Icon data-testid={testId} />
     </button>
   );
 };
+
+IconButton.defaultProps = {
+  isActive: false,
+}
 
 export default IconButton;
