@@ -1,8 +1,9 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import styles from './CircularProgressBar.module.scss';
 import Logo from '../Logo/Logo';
 import Button from '../Button/Button';
+import { numberWithCommas } from '../../utils/numberWithCommas';
+import styles from './CircularProgressBar.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -19,9 +20,6 @@ const CircularProgressBar = ({
   buttonText,
   onClick,
 }: CircularProgressBarProps) => {
-    const numberWithCommas = (value: number): string => {
-        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    }
 
     const percent = (currentValue * 100) / limitValue;
     const strokeDashoffsetValue = percent < 100 ? 241 * (1-percent/100) : 0;
@@ -39,7 +37,7 @@ const CircularProgressBar = ({
                     <feDropShadow
                       dx="0"
                       dy="0"
-                      stdDeviation="4"
+                      stdDeviation="3"
                       floodColor="rgba(255, 121, 102, 0.5)"
                     />
                 </filter>

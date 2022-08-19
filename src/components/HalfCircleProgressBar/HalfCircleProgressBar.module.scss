@@ -1,0 +1,35 @@
+.container {
+  position: relative;
+}
+
+.track {
+  &__inner {
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &__sum {
+      margin-top: 24px;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 36px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+
+    &__total {
+      margin-top: 4px;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 16px;
+      text-align: center;
+      letter-spacing: 0.2px;
+      color: #A2A2B5;
+    }
+  }
+}
