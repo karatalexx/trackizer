@@ -99,6 +99,7 @@ const HalfCircleProgressBar = ({ data, limitValue }: HalfCircleProgressBarProps)
                     strokeDashoffset={strokeDashoffset}
                     key={stroke}
                     overflow="visible"
+                    data-testid={stroke}
                   />
                   <filter id={stroke} overflow="visible">
                     <feDropShadow
