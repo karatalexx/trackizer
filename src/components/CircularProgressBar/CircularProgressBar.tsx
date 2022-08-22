@@ -62,9 +62,9 @@ const CircularProgressBar = ({
               <Button
                 className={cx('inner__btn')}
                 onClick={onClick}
-                textContent={buttonText}
-                variant="smallGray"
-              />
+                variant="smallGray">
+                  <span>{buttonText}</span>
+              </Button>
             </div>
         </div>
     );

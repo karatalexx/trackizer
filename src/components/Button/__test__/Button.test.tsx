@@ -8,25 +8,46 @@ const mockedOnClick = jest.fn();
 
 describe('Button component', () => {
    it('component displayed on the page', () => {
-      render(<Button onClick={mockedOnClick} textContent='test' />);
-      expect(screen.getByRole('button')).toHaveTextContent('test');
+     render(
+       <Button onClick={mockedOnClick}>
+         <span>test</span>
+       </Button>);
+
+     expect(screen.getByRole('button')).toHaveTextContent('test');
    });
 
    it('component got right styles', () => {
-      render(<Button onClick={mockedOnClick} textContent='test' variant='black' />);
-      expect(screen.getByRole('button')).toHaveClass('black');
+     render(
+       <Button
+         onClick={mockedOnClick}
+         variant='black'>
+           <span>test</span>
+       </Button>);
+
+     expect(screen.getByRole('button')).toHaveClass('black');
    });
 
    it('icon displayed', () => {
-      render(<Button onClick={mockedOnClick} textContent='test' variant='black' Icon={AppleIcon} />);
-      expect(screen.getByTestId('icon')).toBeInTheDocument();
+     render(
+       <Button
+         onClick={mockedOnClick}
+         variant='black'
+         Icon={AppleIcon}>
+           <span>test</span>
+       </Button>);
+
+     expect(screen.getByTestId('icon')).toBeInTheDocument();
    });
 
    it('onClick to work correctly', () => {
-      render(<Button onClick={mockedOnClick} textContent='test' />);
+     render(
+       <Button onClick={mockedOnClick}>
+         <span>test</span>
+       </Button>);
+
       const btn = screen.getByRole('button');
       userEvent.click(btn);
 
-      expect(mockedOnClick).toHaveBeenCalled();
+     expect(mockedOnClick).toHaveBeenCalled();
    });
 });

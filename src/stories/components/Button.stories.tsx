@@ -10,7 +10,7 @@ const meta: Meta = {
     variant: {
       defaultValue: 'coral',
     },
-    textContent: {
+    children: {
       defaultValue: 'Click me',
       control: 'text',
       },

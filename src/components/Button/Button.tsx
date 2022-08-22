@@ -1,10 +1,10 @@
-import React, { SVGProps, FC, MouseEvent } from 'react';
+import React, { SVGProps, FC, MouseEvent, ReactElement } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
 
 export interface ButtonProps {
   onClick: (e?: MouseEvent<HTMLButtonElement>) => void;
-  textContent: string;
+  children: ReactElement;
   variant?: 'coral' | 'black' | 'blue' | 'white' | 'darkGray' | 'smallGray';
   Icon?: FC<SVGProps<SVGSVGElement>>;
   className?: string;
@@ -14,7 +14,7 @@ const cx = classNames.bind(styles);
 
 const Button = ({
   onClick,
-  textContent,
+  children,
   variant,
   Icon,
   className,
@@ -26,7 +26,7 @@ const Button = ({
     {...rest}
   >
     {Icon && <Icon data-testid='icon' />}
-    <span className={cx( 'wrapper__text', {colorBlack: variant === 'white'})}>{textContent}</span>
+    <span className={cx( 'wrapper__text', {colorBlack: variant === 'white'})}>{children}</span>
   </button>
 );
 

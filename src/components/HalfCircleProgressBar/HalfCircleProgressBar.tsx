@@ -23,6 +23,8 @@ const HalfCircleProgressBar = ({ data, limitValue }: HalfCircleProgressBarProps)
 
     if (sumAllValues > limitValue) {
       return ((newValue * 100) / (limit)+SEPARATOR_GAP);
+    } else if (sumAllValues === limitValue) {
+      return (value * 100) / (limit)+SEPARATOR_GAP;
     }
     return (value * 100) / (limit)-SEPARATOR_GAP;
   };

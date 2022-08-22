@@ -1,7 +1,7 @@
 import React from 'react';
 import SubscriptionsItem from '../SubscriptionsItem';
 import { render, screen } from '@testing-library/react';
-import { getSubscriptionIcon } from '../../../utils/getSubscriptionIcon';
+import { getSubscriptionIcon } from 'utils/getSubscriptionIcon';
 
 describe('SubscriptionsItem component', () => {
   it('component displayed on the page with icon', () => {
