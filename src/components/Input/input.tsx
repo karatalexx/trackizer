@@ -5,11 +5,12 @@ import styles from './input.module.scss';
 const cx = classNames.bind(styles);
 
 export interface InputProps {
-  value: string;
+  value: string | number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   label: string;
   isCentered?: boolean;
   className?: string;
+  type?: string;
 }
 
 const Input = ({
@@ -18,6 +19,7 @@ const Input = ({
   label,
   isCentered,
   className,
+  type,
   ...rest
 }: InputProps) => (
     <label className={cx('wrapper')}>
@@ -27,7 +29,7 @@ const Input = ({
           {label}
       </span>
       <input
-        type="text"
+        type={type}
         value={value}
         onChange={onChange}
         className={cx('input',`${className}`)}
@@ -38,6 +40,7 @@ const Input = ({
 Input.defaultProps = {
   isCentered: false,
   className: '',
+  type: 'text',
 };
 
 export default Input;
