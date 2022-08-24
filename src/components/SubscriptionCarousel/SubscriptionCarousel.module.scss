@@ -1,0 +1,48 @@
+.carousel {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  overflow-x: hidden;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.inner {
+  white-space: nowrap;
+  transition: transform 0.3s;
+  margin-left: 22vw;
+
+  &__item {
+    display: inline-block;
+    position: relative;
+    margin:0 12vw 0 14vw;
+  }
+}
+
+.carousel-item {
+  &-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    cursor: pointer;
+    outline: none;
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  svg {
+    width: 95px;
+    height: 95px;
+    margin-bottom: 20px;
+  }
+}
