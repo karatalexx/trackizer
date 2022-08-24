@@ -8,6 +8,7 @@ export interface InputProps {
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   label: string;
+  isCentered?: boolean;
   className?: string;
 }
 
@@ -15,16 +16,27 @@ const Input = ({
   value,
   onChange,
   label,
+  isCentered,
   className,
   ...rest
 }: InputProps) => (
     <label className={cx('wrapper')}>
-      <span className={cx('wrapper__label')} data-testid='label'>{label}</span>
-      <input type="text" value={value} onChange={onChange} {...rest} className={cx('input',`${className}`)} />
+      <span
+        className={cx('wrapper__label', { center: isCentered })}
+        data-testid='label'>
+          {label}
+      </span>
+      <input
+        type="text"
+        value={value}
+        onChange={onChange}
+        className={cx('input',`${className}`)}
+        {...rest} />
     </label>
 );
 
 Input.defaultProps = {
+  isCentered: false,
   className: '',
 };
 

@@ -15,6 +15,10 @@ const meta: Meta = {
         defaultValue: 'Your label',
         control: 'text',
       },
+      isCentered: {
+        defaultValue: false,
+        control: 'boolean',
+      }
     }
 }
 
