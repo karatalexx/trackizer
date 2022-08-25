@@ -1,0 +1,43 @@
+.btn {
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+  color: #A2A2B5;
+
+  svg {
+    width: 12px;
+    height: 12px;
+    margin-left: 8px;
+  }
+}
+
+.name {
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.content {
+  height: 25px;
+  display: flex;
+  margin-top: 16px;
+  justify-content: space-between;
+  align-items: center;
+
+  select {
+    background: transparent;
+    border: 1px solid #353542;
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    height: 25px;
+    margin-top: 4px;
+    color: #666680;
+  }
+}

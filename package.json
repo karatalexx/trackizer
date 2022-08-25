@@ -88,6 +88,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
+    "react-hook-form": "^7.34.2",
+    "react-swipeable": "^7.0.0",
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
     "tsconfig-paths-webpack-plugin": "^4.0.0",

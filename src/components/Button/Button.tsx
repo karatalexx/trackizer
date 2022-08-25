@@ -3,11 +3,12 @@ import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
 
 export interface ButtonProps {
-  onClick: (e?: MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e?: MouseEvent<HTMLButtonElement>) => void;
   children: ReactElement;
   variant?: 'coral' | 'black' | 'blue' | 'white' | 'darkGray' | 'smallGray';
   Icon?: FC<SVGProps<SVGSVGElement>>;
   className?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const cx = classNames.bind(styles);
@@ -18,11 +19,13 @@ const Button = ({
   variant,
   Icon,
   className,
+  type,
   ...rest
 }: ButtonProps) => (
   <button
     onClick={onClick}
     className={cx( 'wrapper',`${variant}`, `${className}`)}
+    type={type}
     {...rest}
   >
     {Icon && <Icon data-testid='icon' />}
@@ -34,6 +37,7 @@ Button.defaultProps = {
   variant: 'coral',
   Icon: null,
   className: '',
+  type: 'button',
 };
 
 export default Button;

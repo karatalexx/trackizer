@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 export interface InputProps {
   value: string | number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  label: string;
+  label?: string;
   isCentered?: boolean;
   className?: string;
   type?: string;
@@ -41,6 +41,7 @@ Input.defaultProps = {
   isCentered: false,
   className: '',
   type: 'text',
+  label: '',
 };
 
 export default Input;
