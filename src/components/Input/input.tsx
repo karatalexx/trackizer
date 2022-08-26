@@ -22,7 +22,7 @@ const Input = ({
   type,
   ...rest
 }: InputProps) => (
-    <label className={cx('wrapper')}>
+    <label className={cx('wrapper', {toggleSwitch: type === 'checkbox'})}>
       <span
         className={cx('wrapper__label', { center: isCentered })}
         data-testid='label'>
@@ -34,6 +34,7 @@ const Input = ({
         onChange={onChange}
         className={cx('input',`${className}`)}
         {...rest} />
+      {type === 'checkbox' && <span className={cx('switch')} />}
     </label>
 );
 

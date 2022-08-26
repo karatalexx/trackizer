@@ -17,19 +17,25 @@
   }
 }
 
-.name {
-  color: #FFFFFF;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 20px;
-}
-
 .content {
   height: 25px;
   display: flex;
   margin-top: 16px;
   justify-content: space-between;
   align-items: center;
+
+  &__title {
+    display: flex;
+    align-items: center;
+  }
+
+  &__name {
+    margin-left: 20px;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+  }
 
   select {
     background: transparent;

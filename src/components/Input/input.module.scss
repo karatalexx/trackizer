@@ -43,3 +43,41 @@
   margin-top: 0;
   height: 25px;
 }
+
+.toggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.toggleSwitch input[type="checkbox"] {
+  display: none;
+}
+.toggleSwitch .switch {
+  position: absolute;
+  cursor: pointer;
+  background-color: #4E4E61;
+  border-radius: 25px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: background-color 0.2s ease;
+}
+.toggleSwitch .switch::before {
+  position: absolute;
+  content: "";
+  left: 2px;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+.toggleSwitch input[type="checkbox"]:checked + .switch::before {
+  transform: translateX(20px);
+}
+.toggleSwitch input[type="checkbox"]:checked + .switch {
+  background-color: #1cf661;
+}
