@@ -7,11 +7,12 @@ const cx = classNames.bind(styles);
 
 export interface LogoProps {
   size?: 'small' | 'medium' | 'big';
+  onClick: () => void;
 }
 
-const Logo = ({ size }: LogoProps) => {
+const Logo = ({ size, onClick }: LogoProps) => {
     return (
-        <div className={cx(`${size}`)} data-testid={size}>
+        <div onClick={onClick} className={cx(`${size}`)} data-testid={size}>
           <LogoIcon />
         </div>
     );
@@ -19,6 +20,7 @@ const Logo = ({ size }: LogoProps) => {
 
 Logo.defaultProps = {
   size: 'medium',
+  onClick: null,
 }
 
 export default Logo;

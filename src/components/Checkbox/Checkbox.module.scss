@@ -1,8 +1,10 @@
 .wrapper {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   &__label {
+    display: inline-block;
     margin-left: 8px;
     font-weight: 400;
     font-size: 14px;

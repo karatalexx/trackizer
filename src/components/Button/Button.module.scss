@@ -11,6 +11,11 @@
   text-align: center;
   cursor: pointer;
 
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
   &:active {
     transform: scale(0.95);
     transition: all 200ms;
@@ -22,6 +27,7 @@
     font-weight: 600;
     line-height: 20px;
   }
+
   .colorBlack {
     color: #1C1C23;
   }
