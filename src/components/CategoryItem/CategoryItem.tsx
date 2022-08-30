@@ -17,6 +17,7 @@ const CategoryItem = ({name, currentValue, limitValue, color}: CategoryItemProps
   const differenceBetweenSum = limitValue - currentValue;
   const percent = (currentValue*100) / limitValue;
   const styles = { background: color, width: `${percent}%` }
+  const fixedValue = currentValue.toFixed(2)
 
   return (
     <div className={cx('wrapper')}>
@@ -25,7 +26,7 @@ const CategoryItem = ({name, currentValue, limitValue, color}: CategoryItemProps
        <div className={cx('wrapper__content')}>
          <div className={cx('wrapper__content_top')}>
            <span>{name}</span>
-           <span>${currentValue}</span>
+           <span>${fixedValue}</span>
          </div>
          <div className={cx('wrapper__content_bottom')}>
            <span>${differenceBetweenSum} left to spend</span>

@@ -1,17 +1,14 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import { numberWithCommas } from '../../utils/numberWithCommas';
-import { DonutData, HalfCircleProgressBarProps, ValueFromGenerateSvgPath } from './type';
+import {
+  DonutData,
+  HalfCircleProgressBarProps,
+  ValueFromGenerateSvgPath
+} from './type';
 import styles from './HalfCircleProgressBar.module.scss';
 
 const cx = classNames.bind(styles);
-// that part will be removed after the database is ready
-const mockData = [
-  {value: 500, colour: '#00FAD9'},
-  {value: 500, colour: '#FF7966'},
-  {value: 900, colour: '#AD7BFF'},
-
-];
 
 const HalfCircleProgressBar = ({ data, limitValue }: HalfCircleProgressBarProps) => {
   const STROKE_WIDTH = 3;
@@ -54,8 +51,8 @@ const HalfCircleProgressBar = ({ data, limitValue }: HalfCircleProgressBarProps)
     const dash = getDashLength(item.value);
     console.log(sum)
     return {
-      stroke: item.colour,
-      dashoffset: 157 - sum + SEPARATOR_GAP,
+      stroke: item.color,
+      dashoffset: 157 - sum - SEPARATOR_GAP,
       dashArray: [dash, 157 - dash]
     }
   });
@@ -79,7 +76,7 @@ const HalfCircleProgressBar = ({ data, limitValue }: HalfCircleProgressBarProps)
   return (
     <div className={cx('container')}>
       <div className={cx('track')}>
-        <svg id="donut" viewBox="0 2 94 45" overflow="visible">
+        <svg id="donut" viewBox="2 5 90 45" overflow="visible">
           <path
             className={cx('grey')}
             d="M2,50 a 25 25 0 0 1 90 0"
@@ -125,9 +122,9 @@ const HalfCircleProgressBar = ({ data, limitValue }: HalfCircleProgressBarProps)
 
   );
 };
-// that part will be removed after the database is ready
+
 HalfCircleProgressBar.defaultProps = {
-  data: mockData,
+  data: [],
 }
 
 export default HalfCircleProgressBar;

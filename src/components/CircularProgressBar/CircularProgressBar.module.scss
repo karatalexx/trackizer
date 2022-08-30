@@ -47,5 +47,9 @@ path.orange {
     width: 120px;
     position: absolute;
     bottom: -105px;
+
+    & span {
+      margin-left: 0;
+    };
   }
 }

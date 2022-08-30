@@ -4,20 +4,23 @@ import { render, screen } from '@testing-library/react';
 
 const mockedList = [
   {
-    title: 'Active subs',
-    value: '12',
-    color: 'rgba(255, 166, 153, 1)',
+    name: 'Spotify',
+    price:'$5.99',
+    date: '2022-10-05T14:48:00.000',
+    id: 1,
   },
   {
-    title: 'Highest subs',
-    value: '$19.99',
-    color: 'rgba(173, 123, 255, 1)',
+    name: 'YouTube Premium',
+    price: '$18.99',
+    date: '2022-09-07T14:48:00.000',
+    id: 2,
   },
   {
-    title: 'Lowest subs',
-    value: '$5.99',
-    color: 'rgba(125, 255, 238, 1)',
-   },
+    name: 'Microsoft OneDrive',
+    price: '$29.99',
+    date: '2022-11-12T14:48:00.000',
+    id: 3,
+  },
 ];
 
 describe('SubsRatingList component' ,() => {

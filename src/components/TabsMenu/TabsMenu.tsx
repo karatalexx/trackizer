@@ -7,36 +7,18 @@ import styles from './TabsMenu.module.scss';
 
 const cx = classNames.bind(styles);
 
-// that part will be removed after the database is ready
-const mockedList = [
-  {
-    name: 'Spotify',
-    price:'$5.99',
-    date: '2022-10-05T14:48:00.000',
-    id: 1,
-  },
-  {
-    name: 'YouTube Premium',
-    price: '$18.99',
-    date: '2022-09-07T14:48:00.000',
-    id: 2,
-  },
-  {
-    name: 'Microsoft OneDrive',
-    price: '$29.99',
-    date: '2022-11-12T14:48:00.000',
-    id: 3,
-  },
-];
-
 export interface TabsMenuProps {
-  list?: {
-    name: string;
-    price: string;
-    date: string;
-    id: string | number;
-  }[];
+  list?: Tabs[];
 }
+
+export interface Tabs {
+  name: string;
+  price: string;
+  date: string;
+  id: number;
+  category: string;
+}
+
 
 const TabsMenu = ({ list }: TabsMenuProps) => {
   const buttonList = ['Your subscriptions', 'Upcoming bills'];
@@ -76,9 +58,9 @@ const TabsMenu = ({ list }: TabsMenuProps) => {
     </div>
   );
 };
-// that part will be removed after the database is ready
+
 TabsMenu.defaultProps = {
-  list: mockedList,
+  list: [],
 }
 
 export default TabsMenu;

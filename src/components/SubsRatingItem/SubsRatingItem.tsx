@@ -6,7 +6,7 @@ const cx = classNames.bind(styles);
 
 export interface SubsRatingItemProps {
   title: string;
-  value: string;
+  value: string | number;
   color: string;
 }
 

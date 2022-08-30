@@ -5,7 +5,7 @@ export interface HalfCircleProgressBarProps {
 
 interface GenerateSvgPath {
     value: number;
-    colour: string;
+    color: string;
 }
 
 export interface DonutData {

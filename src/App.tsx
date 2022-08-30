@@ -7,8 +7,10 @@ import Login from './pages/Login/Login';
 import ForgotPass from './pages/ForgotPass/ForgotPass';
 import Home from './pages/Home/Home';
 import Loader from './components/Loader/Loader';
+import Budgets from './pages/Budgets/Budgets';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
+
 
 const publicRoutes = [
   {path: '/', Component: Welcome},
@@ -20,6 +22,7 @@ const publicRoutes = [
 
 const privetRoutes = [
   {path: '/', Component: Home},
+  {path: '/budgets', Component: Budgets},
 ];
 
 function App() {

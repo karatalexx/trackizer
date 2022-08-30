@@ -6,25 +6,45 @@ import styles from './SubsRatingList.module.scss';
 const cx = classNames.bind(styles)
 
 export interface SubsRatingListProps {
-  list: {
-    color: string;
-    title: string;
-    value: string;
-  }[];
+  list: Tab[];
 }
 
-const SubsRatingList = ({ list }: SubsRatingListProps) => (
-  <div className={cx('wrapper')} data-testid='wrapper'>
-    {list.map(({ color, title, value }) => (
-      <div className={cx('button')}  key={title+value}>
+interface Tab {
+  name: string;
+  price: string | number;
+  date: string;
+  id: string | number;
+}
+
+const SubsRatingList = ({ list }: SubsRatingListProps) => {
+  const highestPrice = list.length ? Math.max(...list.map(({ price }) => +price)) : 0;
+  const lowestPrice = list.length ? Math.min(...list.map(({ price }) => +price)) : 0;
+
+  return (
+    <div className={cx('wrapper')} data-testid='wrapper'>
+      <div className={cx('button')}>
         <SubsButton
-          color={color}
-          title={title}
-          value={value}
+          color='#FFA699'
+          title='Active subs'
+          value={list.length}
         />
       </div>
-    ))}
-  </div>
-);
+      <div className={cx('button')}>
+        <SubsButton
+          color='#AD7BFF'
+          title='Highest subs'
+          value={`$${highestPrice}`}
+        />
+      </div>
+      <div className={cx('button')}>
+        <SubsButton
+          color='#7DFFEE'
+          title='Lowest subs'
+          value={`$${lowestPrice}`}
+        />
+      </div>
+    </div>
+  )
+};
 
 export default SubsRatingList;

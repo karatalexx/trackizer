@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import Logo from '../../components/Logo/Logo';
-import Button from '../../components/Button/Button';
+import Logo from 'components/Logo/Logo';
+import Button from 'components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import {
   getAuth,
@@ -9,17 +9,52 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider
 } from 'firebase/auth';
+import { Auth, AuthProvider } from '@firebase/auth';
+import { addDoc,collection } from 'firebase/firestore';
+import { db } from '../../firebase';
 import styles from './Register.module.scss';
 import { ReactComponent as Google } from 'assets/icons/google.svg';
 import { ReactComponent as Facebook } from 'assets/icons/facebook.svg';
 
 const cx = classNames.bind(styles);
 
+const initialUserConfig = {
+  subsList: [],
+  availableSubsList: ['Spotify', 'YouTube Premium', 'Microsoft OneDrive', 'Netflix', 'HBO GO'],
+  monthBillsSum: 0,
+  categoryList: [
+    {
+      name: 'Auto & Transport',
+      limitValue: 400,
+      color: '#00FAD9',
+    },
+    {
+      name: 'Entertainment',
+      limitValue: 600,
+      color: '#FF7966',
+    },
+    {
+      name: 'Security',
+      limitValue: 600,
+      color: '#AD7BFF',
+    },
+  ],
+}
+
 const Register = () => {
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
   const auth = getAuth();
+
+  const signUpHandler = (auth: Auth, provider: AuthProvider) => {
+    signInWithPopup(auth, provider)
+      .then(({user: { uid }}) => {
+        addDoc(collection(db,`${uid}`), initialUserConfig);
+        navigate('/')
+      })
+      .catch((error) => new Error(error.message))
+  };
 
   return (
     <div className={cx('container')}>
@@ -29,13 +64,13 @@ const Register = () => {
            <Button
              variant='white'
              Icon={Google}
-             onClick={() => signInWithPopup(auth, googleProvider)}>
+             onClick={() => signUpHandler(auth, googleProvider)}>
             <span>Sign up with Google</span>
            </Button>
           <Button
             variant='blue'
             Icon={Facebook}
-            onClick={() => signInWithPopup(auth, facebookProvider)}>
+            onClick={() => signUpHandler(auth, facebookProvider)}>
             <span>Sign up with Facebook</span>
           </Button>
         </div>

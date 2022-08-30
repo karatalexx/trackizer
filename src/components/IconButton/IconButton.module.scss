@@ -9,4 +9,13 @@
     transition: all 125ms;
     border-radius: 50%;
   }
+
+  & svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.active svg path {
+  fill: #FFFFFF;
 }

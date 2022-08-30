@@ -28,8 +28,10 @@ const Button = ({
     type={type}
     {...rest}
   >
-    {Icon && <Icon data-testid='icon' />}
-    <span className={cx( 'wrapper__text', {colorBlack: variant === 'white'})}>{children}</span>
+    <span className={cx( 'wrapper__content')}>
+      {Icon && <Icon data-testid='icon' />}
+      <span className={cx( 'wrapper__text', {colorBlack: variant === 'white'})}>{children}</span>
+    </span>
   </button>
 );
 

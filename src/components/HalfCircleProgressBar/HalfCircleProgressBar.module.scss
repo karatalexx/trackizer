@@ -1,5 +1,10 @@
 .container {
   position: relative;
+
+  & svg {
+    height: 105px;
+    width: 210px;
+  }
 }
 
 .track {

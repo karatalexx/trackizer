@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import styles from './RegisterEmail.module.scss';
 import Logo from '../../components/Logo/Logo';
 import Input from '../../components/Input/input';
 import Button from '../../components/Button/Button';
@@ -8,8 +7,35 @@ import PasswordStrengthMeter from '../../components/PasswordStrengthMeter/Passwo
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../firebase';
+import styles from './RegisterEmail.module.scss';
 
 const cx = classNames.bind(styles);
+
+
+const initialUserConfig = {
+  subsList: [],
+  availableSubsList: ['Spotify', 'YouTube Premium', 'Microsoft OneDrive', 'Netflix', 'HBO GO'],
+  monthBillsSum: 0,
+  categoryList: [
+    {
+      name: 'Auto & Transport',
+      limitValue: 400,
+      color: '#00FAD9',
+    },
+    {
+      name: 'Entertainment',
+      limitValue: 600,
+      color: '#FF7966',
+    },
+    {
+      name: 'Security',
+      limitValue: 600,
+      color: '#AD7BFF',
+    },
+  ],
+};
 
 const RegisterEmail = () => {
   const navigate = useNavigate();
@@ -24,11 +50,15 @@ const RegisterEmail = () => {
   const loginHandler = (email: string, pass: string) => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, pass)
+      .then(({user: { uid }}) => {
+        addDoc(collection(db,`${uid}`), initialUserConfig);
+        navigate('/')
+      })
       .catch((error) => {
         const errorMessage = error.message;
         setFirebaseError(errorMessage);
       });
-  }
+  };
 
   return (
     <form className={cx('container')}>

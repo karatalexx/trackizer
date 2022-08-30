@@ -3,9 +3,9 @@ import { render, screen } from '@testing-library/react';
 import HalfCircleProgressBar from '../HalfCircleProgressBar';
 
 const mockData = [
-  {value: 500, colour: '#00FAD9'},
-  {value: 500, colour: '#FF7966'},
-  {value: 0, colour: '#AD7BFF'},
+  {value: 500, color: '#00FAD9'},
+  {value: 500, color: '#FF7966'},
+  {value: 0, color: '#AD7BFF'},
 ];
 
 describe('HalfCircleProgressBar component', () => {
