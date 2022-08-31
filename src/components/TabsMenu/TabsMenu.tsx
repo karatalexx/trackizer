@@ -14,7 +14,7 @@ export interface TabsMenuProps {
 export interface Tabs {
   name: string;
   price: string;
-  date: string;
+  nextPayment: string;
   id: number;
   category: string;
 }
@@ -43,12 +43,12 @@ const TabsMenu = ({ list }: TabsMenuProps) => {
         ))}
       </div>
         <div className={cx('container')}>
-          {list && list.map(({ name, price, date, id }) => (
+          {list && list.map(({ name, price, nextPayment, id }) => (
             <SubscriptionsItem
               Icon={getSubscriptionIcon(name)}
               name={name}
               price={price}
-              date={date}
+              date={nextPayment}
               isUpcomingBill={selected === 1}
               key={id}
               data-testid={name}

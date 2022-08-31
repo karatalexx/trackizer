@@ -11,7 +11,7 @@ export interface SortedByCategory {
 export interface App {
   name: string;
   price: string;
-  date: string;
+  nextPayment: string;
   id: number;
   category: string;
 }
@@ -31,7 +31,7 @@ export interface SubscriptionsInfo {
 export interface Tabs {
   name: string;
   price: string;
-  date: string;
+  nextPayment: string;
   id: number;
   category: string;
 }

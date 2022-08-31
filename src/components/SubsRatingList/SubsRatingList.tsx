@@ -12,7 +12,7 @@ export interface SubsRatingListProps {
 interface Tab {
   name: string;
   price: string | number;
-  date: string;
+  nextPayment: string;
   id: string | number;
 }
 

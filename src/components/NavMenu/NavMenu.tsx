@@ -13,7 +13,6 @@ import { ReactComponent as Plus } from 'assets/icons/plus.svg';
 const cx = classNames.bind(styles);
 
 const NavMenu = () => {
-
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -47,7 +46,9 @@ const NavMenu = () => {
           />
         </div>
       </div>
-      <button onClick={() => navigate('')} className={cx('add__btn')}>
+      <button
+        onClick={() => navigate('/new_subscription')}
+        className={cx('add__btn')}>
         <Plus className={cx('add__btn_icon')} />
       </button>
       <div className={cx('blur')}/>

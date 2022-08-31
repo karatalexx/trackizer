@@ -7,21 +7,21 @@ const mockedList = [
   {
     name: 'Spotify',
     price:'5.99',
-    date: '2022-10-05T14:48:00.000',
+    nextPayment: '2022-10-05T14:48:00.000',
     id: 1,
     category: 'Auto & Transport'
   },
   {
     name: 'YouTube Premium',
     price: '18.99',
-    date: '2022-09-07T14:48:00.000',
+    nextPayment: '2022-09-07T14:48:00.000',
     id: 2,
     category: 'Entertainment'
   },
   {
     name: 'Microsoft OneDrive',
     price: '29.99',
-    date: '2022-11-12T14:48:00.000',
+    nextPayment: '2022-11-12T14:48:00.000',
     id: 3,
     category: 'Security'
   },

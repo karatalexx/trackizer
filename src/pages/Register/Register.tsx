@@ -10,7 +10,7 @@ import {
   FacebookAuthProvider
 } from 'firebase/auth';
 import { Auth, AuthProvider } from '@firebase/auth';
-import { addDoc,collection } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import styles from './Register.module.scss';
 import { ReactComponent as Google } from 'assets/icons/google.svg';
@@ -20,7 +20,31 @@ const cx = classNames.bind(styles);
 
 const initialUserConfig = {
   subsList: [],
-  availableSubsList: ['Spotify', 'YouTube Premium', 'Microsoft OneDrive', 'Netflix', 'HBO GO'],
+  currency: 'USD($)',
+  currencyList: ['USD($)', 'EURO(€)'],
+  reminderList: ['Never', 'Every month', 'Every year'],
+  availableSubsList: [
+    {
+      name: 'Spotify',
+      category: 'Entertainment',
+    },
+    {
+      name: 'YouTube Premium',
+      category: 'Entertainment',
+    },
+    {
+      name: 'Microsoft OneDrive',
+      category: 'Security',
+    },
+    {
+      name: 'Netflix',
+      category: 'Entertainment',
+    },
+    {
+      name: 'HBO GO',
+      category: 'Entertainment',
+    },
+    ],
   monthBillsSum: 0,
   categoryList: [
     {
@@ -50,7 +74,7 @@ const Register = () => {
   const signUpHandler = (auth: Auth, provider: AuthProvider) => {
     signInWithPopup(auth, provider)
       .then(({user: { uid }}) => {
-        addDoc(collection(db,`${uid}`), initialUserConfig);
+        setDoc(doc(db,`${uid}`, 'appsInfo'), initialUserConfig);
         navigate('/')
       })
       .catch((error) => new Error(error.message))

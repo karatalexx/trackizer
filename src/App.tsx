@@ -1,28 +1,29 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Welcome from './pages/Welcome/Welcome';
-import RegisterEmail from './pages/RegisterEmail/RegisterEmail';
-import Register from './pages/Register/Register';
-import Login from './pages/Login/Login';
-import ForgotPass from './pages/ForgotPass/ForgotPass';
-import Home from './pages/Home/Home';
-import Loader from './components/Loader/Loader';
-import Budgets from './pages/Budgets/Budgets';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Welcome from 'pages/Welcome/Welcome';
+import RegisterEmail from 'pages/RegisterEmail/RegisterEmail';
+import Register from 'pages/Register/Register';
+import Login from 'pages/Login/Login';
+import ForgotPass from 'pages/ForgotPass/ForgotPass';
+import Home from 'pages/Home/Home';
+import Loader from 'components/Loader/Loader';
+import Budgets from 'pages/Budgets/Budgets';
+import NewSubscription from 'pages/NewSubscription/NewSubscription';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 
-
 const publicRoutes = [
-  {path: '/', Component: Welcome},
-  {path: '/register', Component: Register},
-  {path: '/email', Component: RegisterEmail},
-  {path: '/login', Component: Login},
-  {path: '/forgotPass', Component: ForgotPass},
+  { path: '/', Component: Welcome },
+  { path: '/register', Component: Register },
+  { path: '/email', Component: RegisterEmail },
+  { path: '/login', Component: Login },
+  { path: '/forgotPass', Component: ForgotPass },
 ];
 
 const privetRoutes = [
-  {path: '/', Component: Home},
-  {path: '/budgets', Component: Budgets},
+  { path: '/', Component: Home },
+  { path: '/budgets', Component: Budgets },
+  { path: '/new_subscription', Component: NewSubscription },
 ];
 
 function App() {
@@ -40,6 +41,10 @@ function App() {
         (publicRoutes.map(({path, Component}) => (
           <Route key={path} path={path} element={<Component />} />
         ))) }
+        <Route
+          path="*"
+          element={<Navigate to="/" replace />}
+        />
     </Routes>
   );
 }
