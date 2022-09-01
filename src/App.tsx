@@ -9,6 +9,7 @@ import Home from 'pages/Home/Home';
 import Loader from 'components/Loader/Loader';
 import Budgets from 'pages/Budgets/Budgets';
 import NewSubscription from 'pages/NewSubscription/NewSubscription';
+import CalendarPage from './pages/CalendarPage/CalendarPage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 
@@ -24,6 +25,7 @@ const privetRoutes = [
   { path: '/', Component: Home },
   { path: '/budgets', Component: Budgets },
   { path: '/new_subscription', Component: NewSubscription },
+  { path: '/calendar', Component: CalendarPage },
 ];
 
 function App() {

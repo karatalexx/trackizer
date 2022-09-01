@@ -35,7 +35,7 @@ const SubscriptionsItem = ({
         ) : <Icon data-testid={name} />}
         <span className={cx('name')}>{name}</span>
       </div>
-      <span className={cx('price')}>{price}</span>
+      <span className={cx('price')}>${price}</span>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useSwipeable } from 'react-swipeable';
 import { getSubscriptionIcon } from '../../utils/getSubscriptionIcon';
@@ -7,18 +7,20 @@ import styles from './SubscriptionCarousel.module.scss';
 const cx = classNames.bind(styles);
 
 export interface SubscriptionCarouselProps {
-  onChange: (selectedSub: string) => void;
+  onChange: (name: string, category: string) => void;
   list: {name: string; category: string}[];
 }
 
 const SubscriptionCarousel = ({ list, onChange }: SubscriptionCarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [subsNamesList, setSubsNamesList] = useState<string[]>([]);
+  const [selectedApp, setSelectedApp] = useState<{name: string, category: string} | null>(null);
 
   const updateIndex = (newIndex: number) => {
     if (newIndex >= 0 && newIndex <= list?.length - 1) {
+      subsChangeHandler(newIndex);
       return setActiveIndex(newIndex);
     }
+    subsChangeHandler(newIndex);
     return setActiveIndex(0);
   };
 
@@ -32,13 +34,13 @@ const SubscriptionCarousel = ({ list, onChange }: SubscriptionCarouselProps) => 
     updateIndex(list?.length - 1)
   }, [list])
 
-  const subsChangeHandler = (e: ChangeEvent<HTMLButtonElement>) => {
-    setSubsNamesList((prevState) => [...prevState, e.target.textContent as string])
+  const subsChangeHandler = (index: number) => {
+    if (list?.length) setSelectedApp(list[index]);
   };
 
   useEffect(() => {
-    subsNamesList[activeIndex] && onChange(subsNamesList[activeIndex]);
-  },[subsNamesList, activeIndex])
+    selectedApp && onChange(selectedApp.name, selectedApp.category);
+  },[selectedApp, activeIndex])
 
   return (
     <div className={cx('wrapper')}>
@@ -59,8 +61,6 @@ const SubscriptionCarousel = ({ list, onChange }: SubscriptionCarouselProps) => 
                   transform: `scale(${activeIndex === index ? 1.7 : 1})`,
                   margin: `0 ${80 / list?.length}vw`}}>
                 <button
-                  autoFocus
-                  onFocus={subsChangeHandler}
                   className={cx('carousel-item-inner')}
                   data-testid={index}>
                   <Icon />

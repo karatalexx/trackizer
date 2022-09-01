@@ -22,6 +22,7 @@ const initialUserConfig = {
   subsList: [],
   currency: 'USD($)',
   currencyList: ['USD($)', 'EURO(€)'],
+  reminder: 'Every month',
   reminderList: ['Never', 'Every month', 'Every year'],
   availableSubsList: [
     {

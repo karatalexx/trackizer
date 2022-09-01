@@ -27,8 +27,8 @@ const NewSubscription = () => {
   const [userInfo, loading] = useGetDataFromFirestore();
   const [newSubsData, setNewSubsData] = useState({
     name: '',
-    firstPayment: new Date().toISOString(),
-    nextPayment: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString(),
+    firstPayment: new Date(new Date().setHours(0, 0, 0, 0)).toLocaleDateString(),
+    nextPayment: new Date(new Date(new Date().setMonth(new Date().getMonth() + 1)).setHours(0, 0, 0, 0)).toLocaleDateString(),
     description: '',
     price: 0,
     monthBillsSum: 0,
@@ -68,8 +68,12 @@ const NewSubscription = () => {
     return setNewSubsData((prevState) => ({...prevState, description: e.target.value}));
   };
 
-  const carouselHandler = (value: string) => {
-    return setNewSubsData((prevState) => ({...prevState, name: value}));
+  const carouselHandler = (name: string, category: string) => {
+    return setNewSubsData((prevState) => ({
+      ...prevState,
+      name,
+      category,
+    }));
   };
 
   const onSubmitHandler = <T,>(data: T) => {

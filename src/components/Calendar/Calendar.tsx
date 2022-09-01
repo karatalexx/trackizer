@@ -11,7 +11,9 @@ import styles from './Calendar.module.scss';
 const cx = classNames.bind(styles);
 
 export interface CalendarProps {
-  onClick: () => void;
+  onClick: (date: string) => void;
+  selectedDateHandler: (date: string) => void;
+  selectedMothHandler: (date: string) => void;
   subsCount?: number;
 }
 
@@ -21,7 +23,7 @@ interface CurrentDate {
   listOfMonth: string[];
 }
 
-const Calendar = ({ onClick, subsCount }: CalendarProps) => {
+const Calendar = ({ onClick, selectedDateHandler, selectedMothHandler, subsCount }: CalendarProps) => {
   const date = new Date();
   const currentYear = date.getFullYear();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -52,7 +54,8 @@ const Calendar = ({ onClick, subsCount }: CalendarProps) => {
   const isOpenHandler = () => setIsOpen(true);
 
   const dateButtonHandler = (day: number, month: number, year: number) => {
-    onClick();
+    onClick(new Date(year, month, day).toLocaleDateString());
+    selectedDateHandler(new Date(year, month, day).toLocaleDateString())
     setCurrentDate({...currentDate, selectedDate: new Date(year, month, day).toLocaleDateString()});
   };
 
@@ -75,6 +78,7 @@ const Calendar = ({ onClick, subsCount }: CalendarProps) => {
 
   const selectMonthHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     isCloseHandler();
+    selectedMothHandler(e.target.value);
     setCurrentDate({...currentDate, currentMonth: months.indexOf(e.target.value)})
   };
 

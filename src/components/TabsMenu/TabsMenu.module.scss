@@ -6,8 +6,9 @@
 
 .container {
   width: 100%;
-  height: calc(100% - 70px);
-  overflow-y: scroll;
+  height: 30vh;
+  padding-bottom: 80px;
+  overflow-y: auto;
   padding-right: 17px;
   box-sizing: content-box;
 }

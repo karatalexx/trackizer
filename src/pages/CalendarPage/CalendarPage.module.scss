@@ -1,0 +1,65 @@
+.wrapper {
+  min-height: 100vh;
+  position: relative;
+
+  .title {
+    width: 100%;
+    padding-top: 32px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    color: #A2A2B5;
+    background: rgba(53, 53, 66, 0.5);
+
+    & button {
+      position: absolute;
+      right: 24px;
+    }
+  }
+
+  .calendar {
+    position: relative;
+    top: 0;
+  }
+
+  .additional__info {
+    margin: 24px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 32px;
+    color: #FFFFFF;
+
+    &_top {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &_bottom {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.2px;
+      color: #A2A2B5;
+    }
+  }
+
+  .subscriptions {
+    display: flex;
+    max-height: 40vh;
+    padding: 24px 24px 100px 24px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow-y: auto;
+  }
+
+  .nav {
+    position: absolute;
+    width: 100%;
+    padding: 24px;
+    bottom: 0;
+  }
+}
