@@ -30,17 +30,17 @@ const SubscriptionCarousel = ({ list, onChange }: SubscriptionCarouselProps) => 
     onSwipedRight: () => updateIndex(activeIndex - 1)
   });
 
-  useEffect(() => {
-    updateIndex(list?.length - 1)
-  }, [list])
-
   const subsChangeHandler = (index: number) => {
     if (list?.length) setSelectedApp(list[index]);
   };
 
   useEffect(() => {
     selectedApp && onChange(selectedApp.name, selectedApp.category);
-  },[selectedApp, activeIndex])
+  },[selectedApp, activeIndex]);
+
+  useEffect(() => {
+    if (list) setSelectedApp(list[activeIndex]);
+  }, [list, activeIndex]);
 
   return (
     <div className={cx('wrapper')}>
@@ -48,18 +48,15 @@ const SubscriptionCarousel = ({ list, onChange }: SubscriptionCarouselProps) => 
         <div
           className={cx('inner')}
           style={{
+            minWidth: `${100 * list?.length}%`,
             transform: `translateX(-${(100 * activeIndex) / list?.length}%)`,
-            marginLeft: `${100 / list?.length}vw`
           }}>
           {list?.map(({ name }, index) => {
             const Icon = getSubscriptionIcon(name);
             return(
               <div
-                className={cx('inner__item')}
-                key={name}
-                style={{
-                  transform: `scale(${activeIndex === index ? 1.7 : 1})`,
-                  margin: `0 ${80 / list?.length}vw`}}>
+                className={cx('inner__item', {focused: activeIndex === index})}
+                key={name}>
                 <button
                   className={cx('carousel-item-inner')}
                   data-testid={index}>

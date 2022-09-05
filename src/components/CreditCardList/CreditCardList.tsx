@@ -7,7 +7,7 @@ import styles from './CreditCardList.module.scss';
 const cx = classNames.bind(styles);
 
 export interface CreditCardListProps {
-  list: {
+  list?: {
     firstName: string;
     lastName: string;
     cardNum: string | number;
@@ -20,7 +20,7 @@ const CreditCardList = ({ list }: CreditCardListProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const updateIndex = (newIndex: number) => {
-    if (newIndex >= 0 && newIndex <= list.length - 1) setActiveIndex(newIndex);
+    if (list && newIndex >= 0 && newIndex <= list.length - 1) setActiveIndex(newIndex);
   };
 
   const handlers = useSwipeable({
@@ -33,8 +33,8 @@ const CreditCardList = ({ list }: CreditCardListProps) => {
     <div {...handlers}  className={cx('carousel')} data-testid='slider'>
       <div
         className={cx('inner')}
-        style={{ transform: `translateX(-${activeIndex * (100/list.length)}%)` }}>
-          {list.map(({
+        style={{ transform: `translateX(-${list && activeIndex * (100/list.length)}%)` }}>
+          {list?.map(({
             firstName,
             lastName,
             cardNum,
@@ -54,5 +54,15 @@ const CreditCardList = ({ list }: CreditCardListProps) => {
     </div>
   );
 };
+
+CreditCardList.defaultProps = {
+  list: [{
+    firstName: 'NO',
+    lastName: 'CARDS',
+    cardNum: 1111,
+    expDate: new Date().toLocaleDateString(),
+    id: 1,
+  }],
+}
 
 export default CreditCardList;

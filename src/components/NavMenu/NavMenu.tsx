@@ -51,7 +51,7 @@ const NavMenu = () => {
         className={cx('add__btn')}>
         <Plus className={cx('add__btn_icon')} />
       </button>
-      <div className={cx('blur')}/>
+      <div className={cx('blur')} data-blur='true' />
     </div>
     );
 };
