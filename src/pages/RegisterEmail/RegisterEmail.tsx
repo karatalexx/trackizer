@@ -1,22 +1,47 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import Logo from '../../components/Logo/Logo';
-import Input from '../../components/Input/input';
-import Button from '../../components/Button/Button';
-import PasswordStrengthMeter from '../../components/PasswordStrengthMeter/PasswordStrengthMeter';
+import Logo from 'components/Logo/Logo';
+import Input from 'components/Input/input';
+import Button from 'components/Button/Button';
+import PasswordStrengthMeter from 'components/PasswordStrengthMeter/PasswordStrengthMeter';
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 import styles from './RegisterEmail.module.scss';
 
 const cx = classNames.bind(styles);
 
-
+const DEFAULT_PHOTO = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 const initialUserConfig = {
   subsList: [],
-  availableSubsList: ['Spotify', 'YouTube Premium', 'Microsoft OneDrive', 'Netflix', 'HBO GO'],
+  currency: 'USD($)',
+  currencyList: ['USD($)', 'EURO(€)'],
+  reminder: 'Every month',
+  reminderList: ['Never', 'Every month', 'Every year'],
+  availableSubsList: [
+    {
+      name: 'Spotify',
+      category: 'Entertainment',
+    },
+    {
+      name: 'YouTube Premium',
+      category: 'Entertainment',
+    },
+    {
+      name: 'Microsoft OneDrive',
+      category: 'Security',
+    },
+    {
+      name: 'Netflix',
+      category: 'Entertainment',
+    },
+    {
+      name: 'HBO GO',
+      category: 'Entertainment',
+    },
+  ],
   monthBillsSum: 0,
   categoryList: [
     {
@@ -50,8 +75,14 @@ const RegisterEmail = () => {
   const loginHandler = (email: string, pass: string) => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, pass)
-      .then(({user: { uid }}) => {
-        addDoc(collection(db,`${uid}`), initialUserConfig);
+      .then(({user}) => {
+        addDoc(collection(db,`${user.uid}`), initialUserConfig);
+        if (!user?.photoURL) {
+          updateProfile(user, {photoURL: DEFAULT_PHOTO});
+        }
+        if (!user?.displayName) {
+          updateProfile(user, {displayName: user?.email?.split('@')[0]});
+        }
         navigate('/')
       })
       .catch((error) => {
@@ -72,7 +103,12 @@ const RegisterEmail = () => {
           control={control}
           name='email'
           render={({ field: { onChange, value } }) => (
-            <Input onChange={onChange} value={value} label='E-mail address' type='email'/>
+            <Input
+              onChange={onChange}
+              value={value}
+              label='E-mail address'
+              type='email'
+            />
           )}
         />
         <Controller

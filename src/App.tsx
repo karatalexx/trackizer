@@ -11,6 +11,7 @@ import Budgets from 'pages/Budgets/Budgets';
 import NewSubscription from 'pages/NewSubscription/NewSubscription';
 import CalendarPage from './pages/CalendarPage/CalendarPage';
 import CreditCards from './pages/CreditCards/CreditCards';
+import Settings from './pages/Settings/Settings';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 
@@ -28,6 +29,7 @@ const privetRoutes = [
   { path: '/new_subscription', Component: NewSubscription },
   { path: '/calendar', Component: CalendarPage },
   { path: '/cards', Component: CreditCards },
+  { path: '/settings', Component: Settings },
 ];
 
 function App() {
