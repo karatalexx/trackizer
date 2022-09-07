@@ -20,6 +20,7 @@ const cx = classNames.bind(styles);
 
 const initialUserConfig = {
   subsList: [],
+  avatars: [],
   currency: 'USD($)',
   currencyList: ['USD($)', 'EURO(€)'],
   reminder: 'Every month',
