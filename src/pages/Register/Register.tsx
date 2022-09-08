@@ -25,6 +25,12 @@ const initialUserConfig = {
   currencyList: ['USD($)', 'EURO(€)'],
   reminder: 'Every month',
   reminderList: ['Never', 'Every month', 'Every year'],
+  security: 'FaceID',
+  securityList: ['FaceID', 'Fingerprint'],
+  sorting: 'Date',
+  sortingList: ['Date', 'Alphabet'],
+  theme: 'Dark',
+  themeList: ['Dark', 'Light'],
   availableSubsList: [
     {
       name: 'Spotify',

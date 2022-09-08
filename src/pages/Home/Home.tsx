@@ -8,7 +8,7 @@ import IconButton from 'components/IconButton/IconButton';
 import Loader from 'components/Loader/Loader';
 import { useNavigate } from 'react-router-dom';
 import { useGetDataFromFirestore } from 'hooks/useGetDataFromFirestore';
-import {Category, SubscriptionsInfo} from './type';
+import { Category, SubscriptionsInfo } from './type';
 import styles from './Home.module.scss';
 import { ReactComponent as Settings } from 'assets/icons/settings.svg';
 

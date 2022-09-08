@@ -11,9 +11,11 @@ export interface FieldProps {
   name: string;
   type: 'select' | 'checkbox' | 'text' | 'date';
   isClicked: boolean;
-  onClick: (value: string) => void;
   onChange: () => void;
+  isChecked?: boolean;
+  onClick?: (value: string) => void;
   selectList?: string[];
+  onBlur?: () => void;
   Icon?: FC<SVGProps<SVGSVGElement>>;
 }
 
@@ -24,6 +26,7 @@ const Field = ({
   isClicked,
   onClick,
   onChange,
+  onBlur,
   selectList,
   Icon,
 }: FieldProps) => {
@@ -37,6 +40,7 @@ const Field = ({
         <Input
           className='settings'
           onChange={onChange}
+          onBlur={onBlur}
           value={value}
           type={type}
           data-testid={value}
@@ -44,7 +48,7 @@ const Field = ({
         ) :
         isClicked ?
           (type === 'select' ? (
-            <select onChange={onChange} data-testid={value}>
+            <select onBlur={onBlur} onChange={onChange} data-testid={value}>
               {selectList?.length && selectList.map((item) => (
                 <option value={item} key={item}>{item}</option>
               ))}
@@ -54,12 +58,13 @@ const Field = ({
               className='settings'
               onChange={onChange}
               value={value}
+              onBlur={onBlur}
               type={type}
               data-testid={value}
             />
           )) : (
             <button
-              onClick={() => onClick(name)}
+              onClick={() => onClick && onClick(name)}
               className={cx('btn')}
               data-testid={value}>
                 {value}

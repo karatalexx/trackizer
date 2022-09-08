@@ -5,8 +5,9 @@ import styles from './input.module.scss';
 const cx = classNames.bind(styles);
 
 export interface InputProps {
-  value: string | number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  value?: string | number;
+  onBlur?: () => void;
   label?: string;
   isCentered?: boolean;
   className?: string;
@@ -16,6 +17,7 @@ export interface InputProps {
 const Input = ({
   value,
   onChange,
+  onBlur,
   label,
   isCentered,
   className,
@@ -31,6 +33,7 @@ const Input = ({
       <input
         type={type}
         value={value}
+        onBlur={onBlur}
         onChange={onChange}
         className={cx('input',`${className}`)}
         {...rest} />
