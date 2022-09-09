@@ -9,59 +9,12 @@ import { useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
+import { initialUserConfig } from 'constants/initialUserConfig';
 import styles from './RegisterEmail.module.scss';
 
 const cx = classNames.bind(styles);
 
 const DEFAULT_PHOTO = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
-const initialUserConfig = {
-  subsList: [],
-  avatars: [],
-  currency: 'USD($)',
-  currencyList: ['USD($)', 'EURO(€)'],
-  reminder: 'Every month',
-  reminderList: ['Never', 'Every month', 'Every year'],
-  availableSubsList: [
-    {
-      name: 'Spotify',
-      category: 'Entertainment',
-    },
-    {
-      name: 'YouTube Premium',
-      category: 'Entertainment',
-    },
-    {
-      name: 'Microsoft OneDrive',
-      category: 'Security',
-    },
-    {
-      name: 'Netflix',
-      category: 'Entertainment',
-    },
-    {
-      name: 'HBO GO',
-      category: 'Entertainment',
-    },
-  ],
-  monthBillsSum: 0,
-  categoryList: [
-    {
-      name: 'Auto & Transport',
-      limitValue: 400,
-      color: '#00FAD9',
-    },
-    {
-      name: 'Entertainment',
-      limitValue: 600,
-      color: '#FF7966',
-    },
-    {
-      name: 'Security',
-      limitValue: 600,
-      color: '#AD7BFF',
-    },
-  ],
-};
 
 const RegisterEmail = () => {
   const navigate = useNavigate();

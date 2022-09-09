@@ -1,3 +1,5 @@
+@import '../../constants/colors';
+
 .wrapper {
   width: 100%;
   position: relative;
@@ -19,6 +21,6 @@
   padding: 7px 9px;
   margin-bottom: 16px;
   margin-top: 16px;
-  background: #0E0E12;
+  background: $COLOR_GRAY_100;
   border-radius: 16px;
 }

@@ -1,3 +1,5 @@
+@import '../../constants/colors';
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -33,7 +35,7 @@
       position: absolute;
       padding: 25px;
       margin: 0 auto;
-      background-color: #1C1C23;
+      background-color: $COLOR_GRAY_80;
       bottom: 0;
     }
   }

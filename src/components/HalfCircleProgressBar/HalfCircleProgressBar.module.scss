@@ -1,3 +1,5 @@
+@import '../../constants/colors';
+
 .container {
   position: relative;
 
@@ -24,7 +26,7 @@
       font-size: 40px;
       line-height: 36px;
       text-align: center;
-      color: #FFFFFF;
+      color: $COLOR_WHITE;
     }
 
     &__total {
@@ -34,7 +36,7 @@
       line-height: 16px;
       text-align: center;
       letter-spacing: 0.2px;
-      color: #A2A2B5;
+      color: $COLOR_GRAY_30;
     }
   }
 }

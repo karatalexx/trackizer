@@ -1,3 +1,5 @@
+@import '../../constants/colors';
+
 .lds-dual-ring {
   width: 100vw;
   height: 100vh;
@@ -15,7 +17,7 @@
   transform: translate(50%, -50%);
   border-radius: 50%;
   border: 6px solid;
-  border-color: #fff transparent;
+  border-color: $COLOR_WHITE transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
 

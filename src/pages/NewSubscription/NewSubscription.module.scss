@@ -1,3 +1,5 @@
+@import '../../constants/colors';
+
 .container {
   height: 100vh;
   padding: 32px 0;
@@ -10,7 +12,7 @@
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.2px;
-  color: #A2A2B5;
+  color: $COLOR_GRAY_30;
   position: relative;
 
   .footer {
@@ -26,7 +28,7 @@
     font-size: 40px;
     line-height: 40px;
     text-align: center;
-    color: #FFFFFF;
+    color: $COLOR_WHITE;
   }
 
   &__btn {
@@ -42,7 +44,7 @@
 
 .portal {
   padding: 24px;
-  background-color: #1C1C23;;
+  background-color: $COLOR_GRAY_80;
   width: 100%;
   height: 100vh;
   position: absolute;

@@ -1,3 +1,5 @@
+@import '../../constants/colors';
+
 .wrapper {
   position: relative;
 }
@@ -15,11 +17,11 @@ path {
 }
 
 path.grey {
-  stroke: rgba(78, 78, 97, 0.2);
+  stroke: $COLOR_GRAY_GRADIENT;
 }
 
 path.orange {
-  stroke: url(#gradient);
+  stroke: url('#gradient');
   animation: dash 3s ease-out forwards;
 }
 
@@ -39,7 +41,7 @@ path.orange {
     font-size: 40px;
     line-height: 40px;
     text-align: center;
-    color: #FFFFFF;
+    color: $COLOR_WHITE;
   }
 
   &__btn {

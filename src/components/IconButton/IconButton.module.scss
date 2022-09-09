@@ -1,3 +1,5 @@
+@import '../../constants/colors';
+
 .wrapper {
   height: 24px;
   border: none;
@@ -17,5 +19,5 @@
 }
 
 .active svg path {
-  fill: #FFFFFF;
+  fill: $COLOR_WHITE;
 }

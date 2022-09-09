@@ -1,3 +1,5 @@
+@import '../../constants/colors';
+
 .wrapper {
   max-width: 600px;
   margin: 0 auto;
@@ -37,9 +39,9 @@
     left: 50%;
     transform: translate(-50%, -20%);
     font-size: 16px;
-    color: #FFF;
+    color: $COLOR_WHITE;
     background:
-      linear-gradient(#FF7966,#FF7966) padding-box,
+      linear-gradient($COLOR_ACCENT_100, $COLOR_ACCENT_100) padding-box,
       radial-gradient(100% 100% at 50% 100%, rgba(255, 255, 255, 0) 43.25%, rgba(255, 127, 55, 0.5) 100%) border-box;
     border: 1px solid transparent;
     box-shadow: 0 8px 25px rgba(255, 121, 102, 0.5);
@@ -58,7 +60,7 @@
     transform: translate(-50%, 0);
     z-index: -1;
     bottom: 0;
-    box-shadow: 0 -60px 35px 55px #1c1c23;
+    box-shadow: 0 -60px 35px 55px $COLOR_GRAY_80;
     width: 90%;
     height: 1px;
   }

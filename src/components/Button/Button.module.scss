@@ -1,3 +1,5 @@
+@import '../../constants/colors';
+
 .wrapper {
   width: 100%;
   display: flex;
@@ -26,24 +28,24 @@
   }
 
   &__text  {
-    color: #FFF;
+    color: $COLOR_WHITE;
     margin-left: 8px;
     font-weight: 600;
     line-height: 20px;
   }
 
   .colorBlack {
-    color: #1C1C23;
+    color: $COLOR_GRAY_80;
   }
 }
 
 .coral {
-  background: radial-gradient(100% 100% at 50% 100%, rgba(255, 255, 255, 0) 43.25%, rgba(255, 127, 55, 0.5) 100%), #FF7966;
+  background: radial-gradient(100% 100% at 50% 100%, rgba(255, 255, 255, 0) 43.25%, rgba(255, 127, 55, 0.5) 100%), $COLOR_ACCENT_100;
   box-shadow: 0 8px 25px rgba(255, 121, 102, 0.5);
 }
 
 .white {
-  background: radial-gradient(100% 100% at 50% 100%, rgba(255, 255, 255, 0) 43.25%, rgba(255, 255, 255, 0.5) 100%), #FFFFFF;
+  background: radial-gradient(100% 100% at 50% 100%, rgba(255, 255, 255, 0) 43.25%, rgba(255, 255, 255, 0.5) 100%), $COLOR_WHITE;
   box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
 }
 
@@ -58,11 +60,11 @@
 }
 
 .darkGray {
-  background: rgba(255, 255, 255, 0.1);
+  background: $COLOR_GRAY_TRANSPARENT;
 }
 
 .smallGray {
-  background: rgba(255, 255, 255, 0.1);
+  background: $COLOR_GRAY_TRANSPARENT;
   font-size: 12px;
   padding: 8px 12px;
   border: 1px solid;
@@ -71,13 +73,11 @@
 
   &.inactive {
     background: transparent;
-    color: #A2A2B5;
+    color: $COLOR_GRAY_30;
   }
 
   &.active {
-    background: rgba(255, 255, 255, 0.1);
-    color: #A2A2B5;
+    background: $COLOR_GRAY_TRANSPARENT;
+    color: $COLOR_GRAY_30;
   }
-
 }
-

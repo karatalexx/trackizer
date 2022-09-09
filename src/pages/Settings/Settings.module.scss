@@ -1,3 +1,5 @@
+@import '../../constants/colors';
+
 .wrapper {
   padding: 24px;
 
@@ -8,7 +10,7 @@
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0.2px;
-    color: #A2A2B5;
+    color: $COLOR_GRAY_30;
 
     & button {
       position: absolute;
@@ -43,7 +45,7 @@
       line-height: 16px;
       text-align: center;
       letter-spacing: 0.2px;
-      color: #A2A2B5;
+      color: $COLOR_GRAY_30;
     }
 
     &__btn {
@@ -52,14 +54,14 @@
       align-items: center;
       margin-top: 16px;
       padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.1);
+      background: $COLOR_GRAY_TRANSPARENT;
       border-radius: 16px;
       font-weight: 600;
       font-size: 12px;
       line-height: 16px;
-      color: #FFFFFF;
+      color: $COLOR_WHITE;
       background:
-        linear-gradient(rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0.1) 100%) padding-box,
+        linear-gradient($COLOR_GRAY_TRANSPARENT,$COLOR_GRAY_TRANSPARENT 100%) padding-box,
         linear-gradient(114.85deg, rgba(207, 207, 252, 0.15) 0%, rgba(207, 207, 252, 0) 65.83%) border-box;
       border: 1px solid transparent;
     }
@@ -79,7 +81,7 @@
       &_field{
         margin-top: 8px;
         padding: 16px 20px;
-        background: rgba(78, 78, 97, 0.2);
+        background: $COLOR_GRAY_GRADIENT;
         backdrop-filter: blur(10px);
         border-radius: 16px;
       }
