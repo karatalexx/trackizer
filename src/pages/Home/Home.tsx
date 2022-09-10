@@ -9,6 +9,7 @@ import Loader from 'components/Loader/Loader';
 import { useNavigate } from 'react-router-dom';
 import { useGetDataFromFirestore } from 'hooks/useGetDataFromFirestore';
 import { Category, SubscriptionsInfo } from './type';
+import { PRIVATE_PATHS}  from 'constants/paths/privatePaths';
 import styles from './Home.module.scss';
 import { ReactComponent as Settings } from 'assets/icons/settings.svg';
 
@@ -19,6 +20,8 @@ const Home = () => {
   const [subscriptionsInfo, setSubscriptionsInfo] = useState<SubscriptionsInfo>({} as SubscriptionsInfo);
   const [userInfo, loading] = useGetDataFromFirestore();
   const { subsList, limitValue, currentValue } = subscriptionsInfo;
+
+  const { SETTINGS, BUDGETS } = PRIVATE_PATHS;
 
   useEffect(() => {
     if (userInfo) {
@@ -31,29 +34,31 @@ const Home = () => {
   }, [userInfo, loading]);
 
   return (
-    <div className={cx('wrapper')}>
+    <>
       {loading && <Loader />}
-       <div className={cx('progress')}>
-         <div className={cx('progress__btn')}>
-           <IconButton onClick={() => navigate('/settings')} Icon={Settings} />
-         </div>
-         <CircularProgressBar
-           currentValue={currentValue || 0}
-           limitValue={limitValue || 0}
-           buttonText='See your budget'
-           onClick={() => navigate('/budgets')}
-         />
-         <div className={cx('rating')}>
-           <SubsRatingList list={subsList || []} />
-         </div>
-       </div>
-       <div className={cx('tabs')}>
-         <TabsMenu list={subsList || []} />
-         <div className={cx('tabs__nav')}>
-           <NavMenu />
-         </div>
-       </div>
-    </div>
+      <div className={cx('wrapper')}>
+        <div className={cx('progress')}>
+          <div className={cx('progress__btn')}>
+            <IconButton onClick={() => navigate(SETTINGS)} Icon={Settings} />
+          </div>
+          <CircularProgressBar
+            currentValue={currentValue || 0}
+            limitValue={limitValue || 0}
+            buttonText='See your budget'
+            onClick={() => navigate(BUDGETS)}
+          />
+          <div className={cx('rating')}>
+            <SubsRatingList list={subsList || []} />
+          </div>
+        </div>
+        <div className={cx('tabs')}>
+          <TabsMenu list={subsList || []} />
+          <div className={cx('tabs__nav')}>
+            <NavMenu />
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

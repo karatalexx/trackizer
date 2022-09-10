@@ -13,6 +13,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { getAuth } from 'firebase/auth';
 import { Category, SubscriptionsInfo } from './type';
+import { PUBLIC_PATHS } from 'constants/paths/publicPath';
 import styles from './NewSubscription.module.scss';
 import { ReactComponent as Back } from 'assets/icons/backIcon.svg';
 
@@ -55,13 +56,11 @@ const NewSubscription = () => {
   }, [userInfo, loading]);
 
   const priceHandler = (value: number) => {
-    return setNewSubsData((prevState) => (
-      {
-        ...prevState,
-        price: value,
-        monthBillsSum: prevState.monthBillsSum + value,
-      })
-    );
+    return setNewSubsData((prevState) => ({
+      ...prevState,
+      price: value,
+      monthBillsSum: prevState.monthBillsSum + value,
+    }));
   };
 
   const descriptionHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -90,12 +89,12 @@ const NewSubscription = () => {
         { merge: true })
         .catch((error) => new Error(error.message));
     }
-    navigate('/');
+    navigate(PUBLIC_PATHS.HOME);
   };
 
   const onDeleteHandler = () => {
     setSubscriptionsInfo({} as SubscriptionsInfo);
-    navigate('/');
+    navigate(PUBLIC_PATHS.HOME);
   };
 
   return (

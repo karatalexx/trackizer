@@ -1,9 +1,9 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import Input from '../Input/input';
 import classNames from 'classnames/bind';
+import styles from './PriceHolder.module.scss';
 import { ReactComponent as Plus } from 'assets/icons/plusInput.svg';
 import { ReactComponent as Minus } from 'assets/icons/minus.svg';
-import styles from './PriceHolder.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -14,18 +14,18 @@ export interface PriceHolderProps {
 
 const PriceHolder = ({ price, onChange }: PriceHolderProps) => {
   const [priceValue, setPriceValue] = useState(price);
+  const PRICE_STEP = 0.01;
 
   const priceValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace('$', '');
     const numberValue = value.replace(/\D/g,'');
     const modifiedValue = +numberValue.replace(/\B(?=(?!\d{3})+(?!\d{}))/, '.');
-
     setPriceValue(modifiedValue);
   };
 
-  const incrementValue = () => setPriceValue((prevState) => +(prevState + 0.01).toFixed(2));
+  const incrementValue = () => setPriceValue((prevState) => +(prevState + PRICE_STEP).toFixed(2));
   
-  const decrementValue = () => setPriceValue((prevState) => +(prevState - 0.01).toFixed(2));
+  const decrementValue = () => setPriceValue((prevState) => +(prevState - PRICE_STEP).toFixed(2));
 
   useEffect(() => {
     onChange(priceValue);

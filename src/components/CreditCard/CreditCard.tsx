@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import { addZero } from '../../utils/addZero';
+import { addZero } from 'utils/addZero';
+import styles from './CreditCard.module.scss';
 import { ReactComponent as Visa } from 'assets/icons/visa.svg';
 import { ReactComponent as ChipCard } from 'assets/icons/chipCard.svg';
-import styles from './CreditCard.module.scss';
 
 const cx = classNames.bind(styles);
 

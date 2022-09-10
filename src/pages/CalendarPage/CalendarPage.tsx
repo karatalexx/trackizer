@@ -4,10 +4,12 @@ import Calendar from 'components/Calendar/Calendar';
 import IconButton from 'components/IconButton/IconButton';
 import NavMenu from 'components/NavMenu/NavMenu';
 import SubscriptionsItem from 'components/SubscriptionsItem/SubscriptionsItem';
+import Loader from 'components/Loader/Loader';
 import { useNavigate } from 'react-router-dom';
 import { useGetDataFromFirestore } from 'hooks/useGetDataFromFirestore';
 import { getSubscriptionIcon } from 'utils/getSubscriptionIcon';
 import {SelectedDate, SubscriptionsInfo, SubsList} from './type';
+import { PRIVATE_PATHS } from 'constants/paths/privatePaths';
 import styles from './CalendarPage.module.scss';
 import { ReactComponent as Settings } from 'assets/icons/settings.svg';
 
@@ -67,45 +69,48 @@ const CalendarPage = () => {
   },[subsList]);
 
   return (
-    <div className={cx('wrapper')}>
-      <div className={cx('title')}>
-        <span>Spending & Budgets</span>
-        <IconButton onClick={() => navigate('/settings')} Icon={Settings} />
-      </div>
-      <div className={cx('calendar')}>
-        <Calendar
-          onClick={calendarHandler}
-          selectedMothHandler={selectedMothHandler}
-          selectedDateHandler={selectedDateHandler}
-          subsCount={filteredSubs?.length}
-        />
-      </div>
-      <div className={cx('additional__info')}>
-        <div className={cx('additional__info_top')}>
-          <span>{month}</span>
-          <span>${upComingBillsSum}</span>
+    <>
+      {loading && <Loader />}
+      <div className={cx('wrapper')}>
+        <div className={cx('title')}>
+          <span>Calendar</span>
+          <IconButton onClick={() => navigate(PRIVATE_PATHS.SETTINGS)} Icon={Settings} />
         </div>
-        <div className={cx('additional__info_bottom')}>
-          <span>{date}</span>
-          <span>in upcoming bills</span>
-        </div>
-      </div>
-      <div className={cx('subscriptions')}>
-        {filteredSubs?.map(({ name, price, firstPayment }) => (
-          <SubscriptionsItem
-            name={name}
-            price={`${price}`}
-            Icon={getSubscriptionIcon(name)}
-            date={firstPayment}
-            isSquare
-            key={name}
+        <div className={cx('calendar')}>
+          <Calendar
+            onClick={calendarHandler}
+            selectedMothHandler={selectedMothHandler}
+            selectedDateHandler={selectedDateHandler}
+            subsCount={filteredSubs?.length}
           />
-        ))}
+        </div>
+        <div className={cx('additional__info')}>
+          <div className={cx('additional__info_top')}>
+            <span>{month}</span>
+            <span>${upComingBillsSum}</span>
+          </div>
+          <div className={cx('additional__info_bottom')}>
+            <span>{date}</span>
+            <span>in upcoming bills</span>
+          </div>
+        </div>
+        <div className={cx('subscriptions')}>
+          {filteredSubs?.map(({ name, price, firstPayment }) => (
+            <SubscriptionsItem
+              name={name}
+              price={`${price}`}
+              Icon={getSubscriptionIcon(name)}
+              date={firstPayment}
+              isSquare
+              key={name}
+            />
+          ))}
+        </div>
+        <div className={cx('nav')}>
+          <NavMenu />
+        </div>
       </div>
-      <div className={cx('nav')}>
-        <NavMenu />
-      </div>
-    </div>
+    </>
   );
 };
 

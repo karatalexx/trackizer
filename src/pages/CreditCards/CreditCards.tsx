@@ -3,10 +3,12 @@ import classNames from 'classnames/bind';
 import IconButton from 'components/IconButton/IconButton';
 import CreditCardList from 'components/CreditCardList/CreditCardList';
 import NavMenu from 'components/NavMenu/NavMenu';
+import Loader from 'components/Loader/Loader';
 import { useNavigate } from 'react-router-dom';
 import { useGetDataFromFirestore } from 'hooks/useGetDataFromFirestore';
 import { getSubscriptionIcon } from 'utils/getSubscriptionIcon';
 import { SubscriptionsInfo } from './type';
+import { PRIVATE_PATHS } from 'constants/paths/privatePaths';
 import styles from './CreditCards.module.scss';
 import { ReactComponent as Settings } from 'assets/icons/settings.svg';
 import { ReactComponent as Plus } from 'assets/icons/categoryPlus.svg';
@@ -31,37 +33,40 @@ const CreditCards = () => {
   }, [userInfo, loading]);
 
   return (
-    <div className={cx('wrapper')}>
-      <div className={cx('title')}>
-        <span>Credit Cards</span>
-        <IconButton onClick={() => navigate('/settings')} Icon={Settings} />
-      </div>
-      <div>
-        <CreditCardList />
-      </div>
-      <span className={cx('subs_title')}>Subscriptions</span>
-      <div className={cx('subscriptions')}>
-        {subsList?.map(({ name }) => {
-          const Icon = getSubscriptionIcon(name);
-          return(
-            <div key={name}>
-              <Icon />
-            </div>
-          );
-        })}
-      </div>
-      <div className={cx('footer')}>
-        <button className={cx('footer__btn')}>
+    <>
+      {loading && <Loader />}
+      <div className={cx('wrapper')}>
+        <div className={cx('title')}>
+          <span>Credit Cards</span>
+          <IconButton onClick={() => navigate(PRIVATE_PATHS.SETTINGS)} Icon={Settings} />
+        </div>
+        <div>
+          <CreditCardList />
+        </div>
+        <span className={cx('subs_title')}>Subscriptions</span>
+        <div className={cx('subscriptions')}>
+          {subsList?.map(({ name }) => {
+            const Icon = getSubscriptionIcon(name);
+            return (
+              <div key={name}>
+                <Icon />
+              </div>
+            );
+          })}
+        </div>
+        <div className={cx('footer')}>
+          <button className={cx('footer__btn')}>
           <span>
             Add new card
           </span>
-          <Plus />
-        </button>
-        <div className={cx('nav')}>
-          <NavMenu />
+            <Plus />
+          </button>
+          <div className={cx('nav')}>
+            <NavMenu />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

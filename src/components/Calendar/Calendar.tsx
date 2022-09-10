@@ -1,12 +1,13 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import { getDayName } from 'utils/getDayName';
 import { getMonthNames } from 'utils/getMonthNames';
 import { getDays } from 'utils/getDays';
 import { addZero } from 'utils/addZero';
+import { arrOfDays } from 'utils/arrOfDays';
+import { MONTHS } from 'constants/months';
+import styles from './Calendar.module.scss';
 import { ReactComponent as ArrowDown } from 'assets/icons/selectDownArrow.svg';
 import { ReactComponent as ArrowUp } from 'assets/icons/selectUpArrow.svg';
-import styles from './Calendar.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -34,52 +35,21 @@ const Calendar = ({ onClick, selectedDateHandler, selectedMothHandler, subsCount
   });
   const { currentMonth, selectedDate, listOfMonth } = currentDate;
 
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ];
-
   const isCloseHandler = () => setIsOpen(false);
 
   const isOpenHandler = () => setIsOpen(true);
 
   const dateButtonHandler = (day: number, month: number, year: number) => {
-    onClick(new Date(year, month, day).toLocaleDateString());
-    selectedDateHandler(new Date(year, month, day).toLocaleDateString())
-    setCurrentDate({...currentDate, selectedDate: new Date(year, month, day).toLocaleDateString()});
-  };
-
-  const arrOfDays = (days: number) => {
-    const result = [];
-    const currentLocalMonth = date.getMonth();
-    const currentLocalDay = date.getDate();
-
-    if (currentLocalMonth === currentMonth) {
-      for(let i = currentLocalDay; i <= days; i++) {
-        result.push({number: i, day: getDayName(currentYear, currentMonth, i)})
-      }
-      return result;
-    }
-    for(let i = 1; i <= days; i++) {
-      result.push({number: i, day: getDayName(currentYear, currentMonth, i)})
-    }
-    return result;
+    const date = new Date(year, month, day).toLocaleDateString();
+    onClick(date);
+    selectedDateHandler(date);
+    setCurrentDate({...currentDate, selectedDate: date});
   };
 
   const selectMonthHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     isCloseHandler();
     selectedMothHandler(e.target.value);
-    setCurrentDate({...currentDate, currentMonth: months.indexOf(e.target.value)})
+    setCurrentDate({...currentDate, currentMonth: MONTHS.indexOf(e.target.value)})
   };
 
   useEffect(() => {
@@ -96,9 +66,9 @@ const Calendar = ({ onClick, selectedDateHandler, selectedMothHandler, subsCount
             <select
               className={cx('calendar__select')}
               onMouseDown={isOpenHandler}
-              value={months[currentMonth]}
+              value={MONTHS[currentMonth]}
               onChange={selectMonthHandler}
-              data-testid={months[currentMonth]}
+              data-testid={MONTHS[currentMonth]}
             >
               {listOfMonth.map((month) => (
                 <option value={month} key={month}>{month}</option>
@@ -108,20 +78,20 @@ const Calendar = ({ onClick, selectedDateHandler, selectedMothHandler, subsCount
               {isOpen ? <ArrowUp/> : <ArrowDown/>}
             </span>
         </div>
-          <div className={cx('calendar__list')}>
-            {arrOfDays(getDays(currentMonth, currentYear)).map(({day, number}) => (
-              <button
-                onClick={() => dateButtonHandler(number, currentMonth, currentYear)}
-                className={
-                  cx('calendar__item', { active: selectedDate === new Date(currentYear, currentMonth, number).toLocaleDateString() })}
-                  key={number}>
-                    <span className={cx('calendar__number')}>{addZero(number)}</span>
-                    <span className={cx('calendar__day')}>{day}</span>
-              </button>
-            ))}
-          </div>
+        <div className={cx('calendar__list')}>
+          {arrOfDays(getDays(currentMonth, currentYear), currentMonth).map(({day, number}) => (
+            <button
+              onClick={() => dateButtonHandler(number, currentMonth, currentYear)}
+              className={
+                cx('calendar__item', { active: selectedDate === new Date(currentYear, currentMonth, number).toLocaleDateString() })}
+                key={number}>
+                  <span className={cx('calendar__number')}>{addZero(number)}</span>
+                  <span className={cx('calendar__day')}>{day}</span>
+            </button>
+          ))}
+        </div>
     </div>
-    );
+  );
 };
 
 Calendar.defaultProps = {

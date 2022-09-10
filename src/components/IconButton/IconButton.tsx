@@ -11,9 +11,9 @@ export interface IconButtonProps {
   testId?: string;
 }
 
-const IconButton = ({ Icon, onClick, isActive, testId, ...rest }: IconButtonProps) => {
+const IconButton = ({ Icon, onClick, isActive, testId }: IconButtonProps) => {
   return (
-    <button className={cx('wrapper', {active: isActive})} onClick={onClick} {...rest}>
+    <button className={cx('wrapper', {active: isActive})} onClick={onClick}>
       <Icon data-testid={testId} />
     </button>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import { numberWithCommas } from '../../utils/numberWithCommas';
+import { numberWithCommas } from 'utils/numberWithCommas';
+import { getPercent } from 'utils/getPercent';
 import {
   DonutData,
   HalfCircleProgressBarProps,
@@ -14,27 +15,28 @@ const HalfCircleProgressBar = ({ data, limitValue }: HalfCircleProgressBarProps)
   const STROKE_WIDTH = 3;
   const SEPARATOR_GAP = 4;
 
-  const getPercent = (value: number, limit: number) => {
-    const upperLimitPercent = (value*(((sumAllValues-limitValue)*100)/limitValue))/100;
+  const getInnerPercent = (value: number, limit: number) => {
+    const upperSumValue = sumAllValues - limitValue;
+    const upperLimitPercent = (value * (getPercent(upperSumValue, limitValue))) / 100;
     const newValue = value - upperLimitPercent;
 
     if (sumAllValues > limitValue) {
-      return ((newValue * 100) / (limit)+SEPARATOR_GAP);
+      return ((newValue * 100) / (limit) + SEPARATOR_GAP);
     } else if (sumAllValues === limitValue) {
-      return (value * 100) / (limit)+SEPARATOR_GAP;
+      return (value * 100) / (limit) + SEPARATOR_GAP;
     }
-    return (value * 100) / (limit)-SEPARATOR_GAP;
+    return (value * 100) / (limit) - SEPARATOR_GAP;
   };
 
   const sumAllValues = data.reduce((a, b) => a + b.value, 0);
 
   const countPercents = data.map((item) => {
-    const limitWithoutCurrentValue = limitValue-item.value;
+    const limitWithoutCurrentValue = limitValue - item.value;
 
     if (item.value > 0){
       return {
         ...item,
-        value: getPercent(item.value, limitWithoutCurrentValue)};
+        value: getInnerPercent(item.value, limitWithoutCurrentValue)};
     }
     return item;
   });
@@ -49,7 +51,6 @@ const HalfCircleProgressBar = ({ data, limitValue }: HalfCircleProgressBarProps)
   const donutData = countPercents.map((item, index, array): DonutData => {
     const sum = array.slice(0, index).reduce((a, b) => a + b.value, 0);
     const dash = getDashLength(item.value);
-    console.log(sum)
     return {
       stroke: item.color,
       dashoffset: 157 - sum - SEPARATOR_GAP,
@@ -76,20 +77,20 @@ const HalfCircleProgressBar = ({ data, limitValue }: HalfCircleProgressBarProps)
   return (
     <div className={cx('container')}>
       <div className={cx('track')}>
-        <svg id="donut" viewBox="2 5 90 45" overflow="visible">
+        <svg id='donut' viewBox='2 5 90 45' overflow='visible'>
           <path
             className={cx('grey')}
-            d="M2,50 a 25 25 0 0 1 90 0"
+            d='M2,50 a 25 25 0 0 1 90 0'
             fill='none'
-            stroke="rgba(78, 78, 97, 0.2)"
-            overflow="visible"/>
+            stroke='rgba(78, 78, 97, 0.2)'
+            overflow='visible'/>
           {Object.entries(generateSvgPath(donutData)).map((item) => {
             const {d, strokeWidth, strokeLinecap, stroke, strokeDasharray, strokeDashoffset} = item[1];
               return (
                 <React.Fragment key={stroke}>
                   <path
                     filter={`url(#${stroke})`}
-                    fill="none"
+                    fill='none'
                     d={d}
                     strokeWidth={strokeWidth}
                     strokeLinecap={strokeLinecap}
@@ -97,16 +98,16 @@ const HalfCircleProgressBar = ({ data, limitValue }: HalfCircleProgressBarProps)
                     strokeDasharray={strokeDasharray}
                     strokeDashoffset={strokeDashoffset}
                     key={stroke}
-                    overflow="visible"
+                    overflow='visible'
                     data-testid={stroke}
                   />
-                  <filter id={stroke} overflow="visible">
+                  <filter id={stroke} overflow='visible'>
                     <feDropShadow
-                      dx="0"
-                      dy="0"
-                      stdDeviation="2"
+                      dx='0'
+                      dy='0'
+                      stdDeviation='2'
                       floodColor={stroke}
-                      overflow="visible"
+                      overflow='visible'
                     />
                   </filter>
                 </React.Fragment>
@@ -115,11 +116,14 @@ const HalfCircleProgressBar = ({ data, limitValue }: HalfCircleProgressBarProps)
         </svg>
       </div>
         <div className={cx('track__inner')}>
-          <span className={cx('track__inner__sum')}>${numberWithCommas(sumAllValues)}</span>
-          <span className={cx('track__inner__total')}>of ${numberWithCommas(limitValue)} budget</span>
+          <span className={cx('track__inner__sum')}>
+            ${numberWithCommas(sumAllValues)}
+          </span>
+          <span className={cx('track__inner__total')}>
+            of ${numberWithCommas(limitValue)} budget
+          </span>
         </div>
     </div>
-
   );
 };
 

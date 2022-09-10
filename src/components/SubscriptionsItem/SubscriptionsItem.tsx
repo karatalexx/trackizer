@@ -25,7 +25,7 @@ const SubscriptionsItem = ({
   const [month, day] = new Date(date).toLocaleDateString('en-US', options).split(' ');
 
   return (
-    <div className={cx('wrapper', {square: isSquare})}>
+    <div className={cx('wrapper', { square: isSquare })}>
       <div className={cx('wrapper__left')}>
         {isUpcomingBill ? (
             <div className={cx('date')}>

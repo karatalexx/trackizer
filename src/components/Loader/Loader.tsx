@@ -4,10 +4,8 @@ import styles from './Loader.module.scss';
 
 const cx = classNames.bind(styles);
 
-const Loader = () => {
-  return (
-      <div className={cx('lds-dual-ring')} />
-  );
-};
+const Loader = () => (
+  <div className={cx('loader')} />
+);
 
 export default Loader;

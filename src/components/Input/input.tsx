@@ -22,23 +22,22 @@ const Input = ({
   isCentered,
   className,
   type,
-  ...rest
 }: InputProps) => (
-    <label className={cx('wrapper', {toggleSwitch: type === 'checkbox'})}>
-      <span
-        className={cx('wrapper__label', { center: isCentered })}
-        data-testid='label'>
-          {label}
-      </span>
-      <input
-        type={type}
-        value={value}
-        onBlur={onBlur}
-        onChange={onChange}
-        className={cx('input',`${className}`)}
-        {...rest} />
-      {type === 'checkbox' && <span className={cx('switch')} />}
-    </label>
+  <label className={cx('wrapper', { toggleSwitch: type === 'checkbox' })}>
+    <span
+      className={cx('wrapper__label', { center: isCentered })}
+      data-testid='label'>
+        {label}
+    </span>
+    <input
+      type={type}
+      value={value}
+      onBlur={onBlur}
+      onChange={onChange}
+      className={cx('input',`${className}`)}
+    />
+    {type === 'checkbox' && <span className={cx('switch')} />}
+  </label>
 );
 
 Input.defaultProps = {

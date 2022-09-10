@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useSwipeable } from 'react-swipeable';
-import { getSubscriptionIcon } from '../../utils/getSubscriptionIcon';
+import { getSubscriptionIcon } from 'utils/getSubscriptionIcon';
 import styles from './SubscriptionCarousel.module.scss';
 
 const cx = classNames.bind(styles);
 
 export interface SubscriptionCarouselProps {
   onChange: (name: string, category: string) => void;
-  list: {name: string; category: string}[];
+  list: List[];
+}
+
+interface List {
+  name: string;
+  category: string
 }
 
 const SubscriptionCarousel = ({ list, onChange }: SubscriptionCarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [selectedApp, setSelectedApp] = useState<{name: string, category: string} | null>(null);
+  const [selectedApp, setSelectedApp] = useState<List | null>(null);
 
   const updateIndex = (newIndex: number) => {
     if (newIndex >= 0 && newIndex <= list?.length - 1) {

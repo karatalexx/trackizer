@@ -10,6 +10,7 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { initialUserConfig } from 'constants/initialUserConfig';
+import { PUBLIC_PATHS } from 'constants/paths/publicPath';
 import styles from './RegisterEmail.module.scss';
 
 const cx = classNames.bind(styles);
@@ -26,6 +27,8 @@ const RegisterEmail = () => {
     }
   });
 
+  const { HOME, LOGIN } = PUBLIC_PATHS;
+
   const loginHandler = (email: string, pass: string) => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, pass)
@@ -37,7 +40,7 @@ const RegisterEmail = () => {
         if (!user?.displayName) {
           updateProfile(user, {displayName: user?.email?.split('@')[0]});
         }
-        navigate('/')
+        navigate(HOME)
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -47,7 +50,7 @@ const RegisterEmail = () => {
 
   return (
     <form className={cx('container')}>
-      <Logo onClick={() => navigate('/')} />
+      <Logo onClick={() => navigate(HOME)} />
       <div className={cx('container__content')}>
         <Controller
           rules={{
@@ -69,7 +72,12 @@ const RegisterEmail = () => {
           control={control}
           name='password'
           render={({ field: { onChange, value } }) => (
-            <Input onChange={onChange} value={value} type='password' label='Password'  />
+            <Input
+              onChange={onChange}
+              value={value}
+              type='password'
+              label='Password'
+            />
           )}
         />
         <span className={cx('container__error')}>{firebaseError}</span>
@@ -83,7 +91,7 @@ const RegisterEmail = () => {
       </div>
       <div className={cx('container__footer')}>
         <span className={cx('container__footer_text')}>Do you have already an account?</span>
-        <Button onClick={() => navigate('/login')} variant='darkGray'>
+        <Button onClick={() => navigate(LOGIN)} variant='darkGray'>
         <span>
           Sign In
         </span>

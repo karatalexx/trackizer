@@ -3,8 +3,8 @@ import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
 
 export interface ButtonProps {
-  onClick?: (e?: MouseEvent<HTMLButtonElement>) => void;
   children: ReactElement;
+  onClick?: (e?: MouseEvent<HTMLButtonElement>) => void;
   variant?: 'coral' | 'black' | 'blue' | 'white' | 'darkGray' | 'smallGray';
   Icon?: FC<SVGProps<SVGSVGElement>>;
   className?: string;
@@ -20,13 +20,11 @@ const Button = ({
   Icon,
   className,
   type,
-  ...rest
 }: ButtonProps) => (
   <button
     onClick={onClick}
     className={cx( 'wrapper',`${variant}`, `${className}`)}
     type={type}
-    {...rest}
   >
     <span className={cx( 'wrapper__content')}>
       {Icon && <Icon data-testid='icon' />}

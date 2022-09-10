@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import Logo from '../../components/Logo/Logo';
-import Input from '../../components/Input/input';
-import Button from '../../components/Button/Button';
-import Checkbox from '../../components/Checkbox/Checkbox';
+import Logo from 'components/Logo/Logo';
+import Input from 'components/Input/input';
+import Button from 'components/Button/Button';
+import Checkbox from 'components/Checkbox/Checkbox';
 import { useNavigate } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { PRIVATE_PATHS } from 'constants/paths/privatePaths';
+import { PUBLIC_PATHS } from 'constants/paths/publicPath';
 import styles from './Login.module.scss';
 
 const cx = classNames.bind(styles);
@@ -22,24 +24,36 @@ const Login = () => {
     }
   });
 
+  const { FORGOT_PASS, REGISTER } = PUBLIC_PATHS;
+  const { HOME } = PRIVATE_PATHS;
+
   const checkboxHandler = () => setIsChecked((prevState) => !prevState);
 
   return (
-    <form onSubmit={handleSubmit(() => navigate('/'))} className={cx('container')}>
-      <Logo onClick={() => navigate('/')} />
+    <form onSubmit={handleSubmit(() => navigate(HOME))} className={cx('container')}>
+      <Logo onClick={() => navigate(HOME)} />
       <div className={cx('container__content')}>
         <Controller
           control={control}
           name='email'
           render={({ field: { onChange, value } }) => (
-            <Input onChange={onChange} value={value} label='Login'/>
+            <Input
+              onChange={onChange}
+              value={value}
+              label='Login'
+            />
           )}
         />
         <Controller
           control={control}
           name='password'
           render={({ field: { onChange, value } }) => (
-            <Input onChange={onChange} value={value} type='password' label='Password'  />
+            <Input
+              onChange={onChange}
+              value={value}
+              type='password'
+              label='Password'
+            />
           )}
         />
         <div className={cx('remember')}>
@@ -49,12 +63,15 @@ const Login = () => {
             label='Remember me'
           />
           <button
-            onClick={() => navigate('/forgotPass')}
+            onClick={() => navigate(FORGOT_PASS)}
             className={cx('remember__password')}>
               Forgot password
           </button>
         </div>
-        <Button onClick={() => signInWithEmailAndPassword(auth, watch('email'), watch('password'))} type='submit'>
+        <Button
+          onClick={() => signInWithEmailAndPassword(auth, watch('email'), watch('password'))}
+          type='submit'
+        >
           <span>
             Sign In
           </span>
@@ -62,7 +79,7 @@ const Login = () => {
       </div>
       <div className={cx('container__footer')}>
         <span className={cx('container__footer_text')}>If you don&apos;t have an account yet?</span>
-        <Button onClick={() => navigate('/register')} variant='darkGray'>
+        <Button onClick={() => navigate(REGISTER)} variant='darkGray'>
           <span>
             Sign Un
           </span>

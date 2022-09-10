@@ -1,12 +1,12 @@
 @import '../../constants/colors';
 
-.lds-dual-ring {
+.loader {
   width: 100vw;
   height: 100vh;
   position: relative;
 }
 
-.lds-dual-ring:after {
+.loader:after {
   content: " ";
   display: inline-block;
   width: 80px;
@@ -18,10 +18,10 @@
   border-radius: 50%;
   border: 6px solid;
   border-color: $COLOR_WHITE transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
+  animation: loader 1.2s linear infinite;
 }
 
-@keyframes lds-dual-ring {
+@keyframes loader {
   0% {
     transform: translate(50%, -50%) rotate(0deg);
   }

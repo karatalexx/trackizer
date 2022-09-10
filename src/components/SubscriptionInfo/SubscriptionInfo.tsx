@@ -6,9 +6,9 @@ import Button from '../Button/Button';
 import Field from '../Field/Field';
 import { getSubscriptionIcon } from 'utils/getSubscriptionIcon';
 import { SubscriptionInfoProps } from './type';
+import styles from './SubscriptionInfo.module.scss';
 import { ReactComponent as DownMenu } from 'assets/icons/downMenuArrow.svg';
 import { ReactComponent as TrashIcon } from 'assets/icons/trash.svg';
-import styles from './SubscriptionInfo.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -37,11 +37,11 @@ const SubscriptionInfo = ({
   });
 
   const SubsIcon = getSubscriptionIcon(name);
-  const [isClicked, setIsClicked] = useState('');
+  const [clickedField, setClickedField] = useState('');
 
-  const arrowBtnHandler = (value: string) => setIsClicked(value);
+  const arrowBtnHandler = (value: string) => setClickedField(value);
 
-  const onSaveHandler = () => setIsClicked('');
+  const onSaveHandler = () => setClickedField('');
 
   return (
     <div className={cx('wrapper')}>
@@ -57,7 +57,10 @@ const SubscriptionInfo = ({
         <span className={cx('header__name')}>{name}</span>
         <span className={cx('header__price')}>${price}</span>
       </div>
-       <form onSubmit={handleSubmit(onSubmit)} className={cx('footer')} data-testid='form'>
+       <form
+         onSubmit={handleSubmit(onSubmit)}
+         className={cx('footer')}
+         data-testid='form'>
         <div className={cx('footer__content')}>
            <Controller
              control={control}
@@ -68,7 +71,7 @@ const SubscriptionInfo = ({
                  value={value}
                  type='text'
                  onChange={onChange}
-                 isClicked={isClicked === 'Name'}
+                 isClicked={clickedField === 'Name'}
                  onClick={arrowBtnHandler}
              />
              )}
@@ -82,7 +85,7 @@ const SubscriptionInfo = ({
                 value={value}
                 type='text'
                 onChange={onChange}
-                isClicked={isClicked === 'Description'}
+                isClicked={clickedField === 'Description'}
                 onClick={arrowBtnHandler}
               />
             )}
@@ -97,7 +100,7 @@ const SubscriptionInfo = ({
                 type='select'
                 selectList={category.categoryList}
                 onChange={onChange}
-                isClicked={isClicked === 'Category'}
+                isClicked={clickedField === 'Category'}
                 onClick={arrowBtnHandler}
               />
             )}
@@ -111,7 +114,7 @@ const SubscriptionInfo = ({
                 value={new Date(value).toLocaleDateString()}
                 type='date'
                 onChange={onChange}
-                isClicked={isClicked === 'First payment'}
+                isClicked={clickedField === 'First payment'}
                 onClick={arrowBtnHandler}
               />
             )}
@@ -126,7 +129,7 @@ const SubscriptionInfo = ({
                 type='select'
                 selectList={reminder.reminderList}
                 onChange={onChange}
-                isClicked={isClicked === 'Reminder'}
+                isClicked={clickedField === 'Reminder'}
                 onClick={arrowBtnHandler}
               />
             )}
@@ -141,7 +144,7 @@ const SubscriptionInfo = ({
                 type='select'
                 selectList={currency.currencyList}
                 onChange={onChange}
-                isClicked={isClicked === 'Currency'}
+                isClicked={clickedField === 'Currency'}
                 onClick={arrowBtnHandler}
               />
             )}
@@ -151,8 +154,7 @@ const SubscriptionInfo = ({
            onClick={onSaveHandler}
            variant='darkGray'
            type='submit'
-           data-testid='submit'
-         >
+           data-testid='submit'>
              <span>Save</span>
          </Button>
        </form>

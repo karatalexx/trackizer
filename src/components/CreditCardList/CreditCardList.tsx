@@ -23,17 +23,20 @@ const CreditCardList = ({ list }: CreditCardListProps) => {
     if (list && newIndex >= 0 && newIndex <= list.length - 1) setActiveIndex(newIndex);
   };
 
-  const handlers = useSwipeable({
+  const swipeHandlers = useSwipeable({
     trackMouse: true,
     onSwipedLeft: () =>  updateIndex(activeIndex + 1),
     onSwipedRight: () => updateIndex(activeIndex - 1)
   });
 
   return (
-    <div {...handlers}  className={cx('carousel')} data-testid='slider'>
+    <div
+      {...swipeHandlers}
+      className={cx('carousel')}
+      data-testid='slider'>
       <div
         className={cx('inner')}
-        style={{ transform: `translateX(-${list && activeIndex * (100/list.length)}%)` }}>
+        style={{ transform: `translateX(-${list && activeIndex * (100 / list.length)}%)` }}>
           {list?.map(({
             firstName,
             lastName,

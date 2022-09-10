@@ -1,13 +1,13 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import Field from '../../components/Field/Field';
-import Loader from '../../components/Loader/Loader';
-import IconButton from '../../components/IconButton/IconButton';
+import Field from 'components/Field/Field';
+import Loader from 'components/Loader/Loader';
+import IconButton from 'components/IconButton/IconButton';
+import Input from 'components/Input/input';
 import { useForm, Controller } from 'react-hook-form';
 import { getAuth, updateProfile, updateEmail } from 'firebase/auth';
-import { ref, getStorage, uploadBytes, getDownloadURL } from 'firebase/storage';
-import {useNavigate} from 'react-router-dom';
-import {useGetDataFromFirestore} from '../../hooks/useGetDataFromFirestore';
+import { useNavigate } from 'react-router-dom';
+import { useGetDataFromFirestore } from 'hooks/useGetDataFromFirestore';
 import styles from './Settings.module.scss';
 import { ReactComponent as Arrow } from 'assets/icons/backIcon.svg';
 import { ReactComponent as Security } from 'assets/icons/security-settings.svg';
@@ -21,7 +21,6 @@ import { ReactComponent as Theme } from 'assets/icons/theme.svg';
 const cx = classNames.bind(styles);
 
 interface ProfileInfo {
-  photo: unknown;
   name: string | null;
   email: string;
 }
@@ -40,17 +39,15 @@ interface SubscriptionsInfo {
 const Settings = () => {
   const { currentUser } = getAuth();
   const navigate = useNavigate();
-  const storage = getStorage();
   const [userInfo, loading] = useGetDataFromFirestore();
   const [subscriptionsInfo, setSubscriptionsInfo] = useState<SubscriptionsInfo>({} as SubscriptionsInfo);
   const [isEdit, setIsEdit] = useState(false);
   const [isClicked, setIsClicked] = useState('');
   const [profileInfo, setProfileInfo] = useState<ProfileInfo>({
-    photo: '',
     name: '',
     email: '',
   });
-  const { name, email, photo } = profileInfo;
+  const { name, email } = profileInfo;
   const {
     currency,
     currencyList,
@@ -62,13 +59,13 @@ const Settings = () => {
     themeList
   } = subscriptionsInfo;
 
-  const { handleSubmit, control } = useForm({
+  const { control } = useForm({
     defaultValues: {
       currency,
       security,
       sorting,
       theme,
-      isCloudSync: false
+      isCloudSync: false,
     }
   });
 
@@ -77,15 +74,6 @@ const Settings = () => {
   const onBlurHandler = () =>  setIsClicked('');
 
   const isEditHandler = () => setIsEdit((prevState) => !prevState);
-
-  const photoHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setProfileInfo((prevState) => ({
-        ...prevState,
-        photo: e.target.files![0],
-      }))
-    }
-  };
 
   const emailHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setProfileInfo((prevState) => ({
@@ -103,13 +91,11 @@ const Settings = () => {
 
   const uploadProfileData = async () => {
     if (currentUser) {
-      const fileRef = ref(storage,`${currentUser?.uid}/avatars`);
-      await uploadBytes(fileRef, photo as Blob);
-      getDownloadURL(fileRef).then((url) => {
-        updateProfile(currentUser, { photoURL: url, displayName: name });
-        updateEmail(currentUser, email);
-        isEditHandler();
-      }).catch((error) => new Error(error.message));
+      updateProfile(currentUser, { displayName: name })
+        .catch((error) => new Error(error.message));
+      updateEmail(currentUser, email)
+        .catch((error) => new Error(error.message));
+      isEditHandler()
     }
   };
 
@@ -131,7 +117,6 @@ const Settings = () => {
   useEffect(() => {
     if (currentUser?.displayName || currentUser?.email || currentUser?.photoURL) {
       setProfileInfo({
-        photo: currentUser?.photoURL,
         name: currentUser?.displayName,
         email: currentUser?.email || '',
       })
@@ -139,7 +124,8 @@ const Settings = () => {
   },[]);
 
   return (
-    <>{loading ? (
+    <>
+      {loading ? (
       <Loader />
     ) : (
       <div className={cx('wrapper')}>
@@ -155,9 +141,8 @@ const Settings = () => {
                 src={currentUser?.photoURL as string}
                 alt='user-photo'
               />
-              <input type='file' onChange={photoHandler}/>
-              <input value={name as string} onChange={nameHandler} />
-              <input value={email} onChange={emailHandler} />
+              <Input value={name as string} onChange={nameHandler} />
+              <Input value={email} onChange={emailHandler} />
             </>
           ) : (
             <>
@@ -297,7 +282,8 @@ const Settings = () => {
           </div>
         </div>
       </div>
-    )}</>
+    )}
+    </>
   );
 };
 

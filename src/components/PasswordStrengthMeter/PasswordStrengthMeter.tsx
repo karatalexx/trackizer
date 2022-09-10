@@ -9,7 +9,7 @@ export interface PasswordStrengthMeterProps {
   password: string;
 }
 
-const PasswordStrengthMeter = ({password}: PasswordStrengthMeterProps) => {
+const PasswordStrengthMeter = ({ password }: PasswordStrengthMeterProps) => {
   const passwordScore = zxcvbn(password).score;
 
   return (

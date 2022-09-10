@@ -1,23 +1,24 @@
 import React from 'react';
 import classNames from 'classnames/bind';
+import { getPercent } from 'utils/getPercent';
 import { getCategoryIcon } from 'utils/getCategoruIcon';
 import styles from './CategoryItem.module.scss';
 
 const cx = classNames.bind(styles);
 
 export interface CategoryItemProps {
- name: string;
- currentValue: number;
- limitValue: number;
- color: string;
+  name: string;
+  currentValue: number;
+  limitValue: number;
+  color: string;
 }
 
-const CategoryItem = ({name, currentValue, limitValue, color}: CategoryItemProps) => {
+const CategoryItem = ({ name, currentValue, limitValue, color }: CategoryItemProps) => {
   const Icon = getCategoryIcon(name);
   const differenceBetweenSum = limitValue - currentValue;
-  const percent = (currentValue*100) / limitValue;
-  const styles = { background: color, width: `${percent}%` }
-  const fixedValue = currentValue.toFixed(2)
+  const percent = getPercent(currentValue, limitValue);
+  const styles = { background: color, width: `${percent}%` };
+  const fixedValue = currentValue.toFixed(2);
 
   return (
     <div className={cx('wrapper')}>

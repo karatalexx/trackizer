@@ -19,15 +19,12 @@ export interface Tabs {
   category: string;
 }
 
-
 const TabsMenu = ({ list }: TabsMenuProps) => {
   const buttonList = ['Your subscriptions', 'Upcoming bills'];
   const buttonsMap = new Map(buttonList.map((button, index) => [index, button]));
   const [selected, setSelected] = useState(0);
 
-  const selectHandler = (index: number) => {
-    setSelected(index);
-  };
+  const selectHandler = (index: number) => setSelected(index);
 
   return (
     <div className={cx('wrapper')}>
@@ -43,17 +40,17 @@ const TabsMenu = ({ list }: TabsMenuProps) => {
         ))}
       </div>
         <div className={cx('container')}>
-          {list && list.map(({ name, price, nextPayment, id }) => (
+          {list && list.map(({ name, price, nextPayment }) => (
             <SubscriptionsItem
               Icon={getSubscriptionIcon(name)}
               name={name}
               price={price}
               date={nextPayment}
               isUpcomingBill={selected === 1}
-              key={id}
+              key={name}
               data-testid={name}
-            />)
-          )}
+            />
+          ))}
         </div>
     </div>
   );
